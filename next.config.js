@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  output: 'export',
   images: {
     remotePatterns: [
       {
@@ -13,6 +14,7 @@ const nextConfig = {
         hostname: 'via.placeholder.com',
       },
     ],
+    unoptimized: true,
   },
 }
 
