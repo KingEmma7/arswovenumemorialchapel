@@ -1,9 +1,12 @@
-name: Generate a build and push to another branch
+name: Hostinger Deployment via build branch
 
 on:
   push:
     branches:
       - master
+
+permissions:
+  contents: write
 
 jobs:
   build:
