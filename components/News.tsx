@@ -39,10 +39,10 @@ const News: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2">
             <div className="relative h-64 lg:h-full">
               <Image
-                src="/images/news/wmc-227.png"
+                src="/images/news/wmc-264.png"
                 alt="ARS Women Council Celebration"
                 fill
-                className="object-cover object-center"
+                className="object-cover object-[25%_35%]"
               />
               <div className="absolute top-4 left-4">
                 <span className="bg-church-red text-white px-3 py-1 rounded-full text-sm font-semibold">

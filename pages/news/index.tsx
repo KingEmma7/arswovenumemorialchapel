@@ -27,17 +27,17 @@ const NewsPage: React.FC = () => {
       author: "ARS Women's Council",
       date: "July 25th, 2025",
       readTime: "5 min read",
-      image: "/images/news/wmc-14.png",
+      image: "/images/news/wmc-227.png",
       category: "Events"
     },
     {
       id: 2,
-      title: "WMC Youth Ministry Revival",
-      excerpt: "Our youth ministry continues to grow with exciting new programs and activities designed to engage young people in their faith journey.",
-      author: "Youth Ministry",
+      title: "WMC Annual Harvest Service",
+      excerpt: "Our Annual Harvest Service is a time of celebration and renewal, as we gather to give thanks for the blessings of the harvest and to seek God's guidance for the future.",
+      author: "Harvest Ministry",
       date: "July 20th, 2025",
       readTime: "3 min read",
-      image: "/images/news/wmc-36.png",
+      image: "/images/clergy/wovenu.png",
       category: "Youth"
     },
     {
@@ -47,7 +47,7 @@ const NewsPage: React.FC = () => {
       author: "Community Service Team",
       date: "July 15th, 2025",
       readTime: "4 min read",
-      image: "/images/news/wmc-38.png",
+      image: "/images/news/wmc-7.png",
       category: "Community Service"
     },
     {
@@ -67,7 +67,7 @@ const NewsPage: React.FC = () => {
       author: "Men's Fellowship",
       date: "July 5th, 2025",
       readTime: "2 min read",
-      image: "/images/news/wmc-54.png",
+      image: "/images/clergy/wovenu.jpg",
       category: "Ministries"
     },
     {
@@ -77,7 +77,7 @@ const NewsPage: React.FC = () => {
       author: "Music Ministry",
       date: "July 1st, 2025",
       readTime: "3 min read",
-      image: "/images/news/wmc-56.png",
+      image: "/images/groups/juniorchoir.jpg",
       category: "Ministries"
     }
   ];
@@ -121,10 +121,10 @@ const NewsPage: React.FC = () => {
         <section className="pt-24 pb-16 bg-gradient-to-br from-navy-900 to-navy-800 relative overflow-hidden">
           <div className="absolute inset-0">
             <Image
-              src="/images/news/wmc-14.png"
+              src="/images/news/wmc-38.png"
               alt="WMC News"
               fill
-              className="object-cover opacity-20"
+              className="object-cover opacity-20 object-top"
             />
           </div>
           <div className="container-width">
@@ -190,7 +190,7 @@ const NewsPage: React.FC = () => {
                       src={post.image}
                       alt={post.title}
                       fill
-                      className="object-cover"
+                      className="object-cover object-[25%_35%]"
                     />
                     <div className="absolute top-4 left-4">
                       <span className="bg-church-red text-white px-3 py-1 rounded-full text-sm font-semibold">
