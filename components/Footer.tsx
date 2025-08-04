@@ -68,7 +68,7 @@ const Footer: React.FC = () => {
                   <FiMapPin className="w-5 h-5 text-gold-500 mt-1 flex-shrink-0" />
                   <div>
                     <p className="text-gray-300">
-                      Asore Junction, Musuku<br />
+                      Asore Junction, <a href="/contact" className="hover:underline">Musuku</a><br />
                       Accra, Ghana<br />
                       00233
                     </p>

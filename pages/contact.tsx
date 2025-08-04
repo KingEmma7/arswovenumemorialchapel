@@ -129,6 +129,33 @@ const ContactPage: React.FC = () => {
           </div>
         </section>
 
+        {/* Map Section - Full Width After Hero */}
+        <section className="py-12 bg-white">
+          <div className="container-width">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl font-bold text-navy-900 mb-6 text-center">
+                Find Us
+              </h2>
+              <div className="rounded-lg overflow-hidden shadow-lg w-full">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.235851108489!2d-0.2344720239882873!3d5.67900939430259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9ff29808ca89%3A0x2201e5cc8ff14c43!2sA.R.S.%20Musuku%20Branch%20(Wovenu%20Memorial%20Chapel)!5e0!3m2!1sen!2sgh!4v1754272504131!5m2!1sen!2sgh" 
+                  width="100%" 
+                  height="400" 
+                  style={{ border: 0 }} 
+                  allowFullScreen 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
         {/* Contact Information */}
         <section className="section-padding">
           <div className="container-width">
@@ -323,24 +350,6 @@ const ContactPage: React.FC = () => {
                 viewport={{ once: true }}
                 className="space-y-8"
               >
-                {/* Map */}
-                <div>
-                  <h3 className="text-2xl font-bold text-navy-900 mb-4">
-                    Find Us
-                  </h3>
-                  <div className="rounded-lg overflow-hidden shadow-lg">
-                    <iframe 
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.235851108489!2d-0.2344720239882873!3d5.67900939430259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9ff29808ca89%3A0x2201e5cc8ff14c43!2sA.R.S.%20Musuku%20Branch%20(Wovenu%20Memorial%20Chapel)!5e0!3m2!1sen!2sgh!4v1754272504131!5m2!1sen!2sgh" 
-                      width="100%" 
-                      height="300" 
-                      style={{ border: 0 }} 
-                      allowFullScreen 
-                      loading="lazy" 
-                      referrerPolicy="no-referrer-when-downgrade"
-                    ></iframe>
-                  </div>
-                </div>
-
                 {/* Service Times */}
                 <div>
                   <h3 className="text-2xl font-bold text-navy-900 mb-4">

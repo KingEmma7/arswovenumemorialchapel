@@ -83,7 +83,7 @@ const SabbathServicePage: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-2 text-gold-400">
                   <FiMapPin className="w-6 h-6" />
-                  <span className="text-xl font-semibold">Musuku</span>
+                  <span className="text-xl font-semibold"><a href="/contact" className="hover:underline">Musuku</a></span>
                 </div>
               </div>
             </motion.div>
