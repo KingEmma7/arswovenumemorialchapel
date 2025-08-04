@@ -9,17 +9,17 @@ const Hero: React.FC = () => {
       {/* Background Image - Full Cover */}
       <div className="absolute inset-0">
         <Image
-          src="/images/clergy/bishop-veliane-5.jpg"
+          src="/images/clergy/bishop1.jpg"
           alt="Church congregation"
           fill
-          className="object-cover object-[25%_25%]"
+          className="object-cover object-[50%_25%]"
           priority
         />
         <div className="absolute inset-0 bg-navy-900/50"></div>
       </div>
 
-      {/* Content - Right Side */}
-      <div className="relative z-10 w-full px-8 sm:px-12 lg:px-16 lg:mr-24 mb-24 flex justify-end">
+      {/* Content - Left Side */}
+      <div className="relative z-10 w-full px-8 sm:px-12 lg:px-16 lg:ml-24 mb-24 flex justify-start">
         <div className="max-w-2xl">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
