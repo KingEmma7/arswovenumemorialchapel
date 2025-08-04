@@ -24,24 +24,14 @@ const ServicesPage: React.FC = () => {
       id: 1,
       title: "Sabbath Service",
       description: "Our main worship service where we gather as a community to praise God, hear His word, and fellowship together.",
-      time: "10:00 AM",
-      day: "Saturday",
+      time: "9:00 AM",
+      day: "Sunday",
       image: "/images/pages/sabbath-service-hero.jpg",
       href: "/sabbath-service",
       icon: <FiUsers className="w-8 h-8" />
     },
     {
       id: 2,
-      title: "ShewBread",
-      description: "A special service focused on spiritual nourishment through prayer, meditation, and sharing of God's word.",
-      time: "6:00 PM",
-      day: "Wednesday",
-      image: "/images/pages/shewbread-hero.jpg",
-      href: "/shewbread",
-      icon: <FiHeart className="w-8 h-8" />
-    },
-    {
-      id: 3,
       title: "Wednesday Teachings",
       description: "Deep dive into God's word through Bible study, discussion, and prayer.",
       time: "7:00 PM",
@@ -51,7 +41,7 @@ const ServicesPage: React.FC = () => {
       icon: <FiBookOpen className="w-8 h-8" />
     },
     {
-      id: 4,
+      id: 3,
       title: "Friday Prayer Service",
       description: "Join us in prayer for our church, community, and world.",
       time: "6:00 PM",

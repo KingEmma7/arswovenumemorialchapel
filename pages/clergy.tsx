@@ -36,7 +36,7 @@ const ClergyPage: React.FC = () => {
     {
       id: 2,
       name: "Bishop Sinametor Wovenu Tagbor",
-      title: "Assistant Bishop",
+      title: "Regional Bishop",
       description: "Supporting the Presiding Bishop in pastoral care and administrative duties. Bishop Williams specializes in youth ministry and community outreach programs.",
       image: "/images/clergy/assistant-bishop.jpg",
       email: "bishop.williams@wmc.org",
@@ -48,7 +48,7 @@ const ClergyPage: React.FC = () => {
     {
       id: 3,
       name: "Bishop Sedenkor Wovenu",
-      title: "Regional Bishop",
+      title: "Assistant Bishop",
       description: "Overseeing church operations in the northern region and providing spiritual guidance to multiple congregations.",
       image: "/images/clergy/regional-bishop.jpg",
       email: "bishop.asante@wmc.org",
@@ -59,10 +59,10 @@ const ClergyPage: React.FC = () => {
     },
     {
       id: 4,
-      name: "Deacon Emmanuel Osei",
-      title: "Senior Deacon",
+      name: "Elder Hope Goka",
+      title: "Deacon",
       description: "Leading our deacon ministry and serving the congregation through practical service and spiritual support.",
-      image: "/images/clergy/senior-deacon.jpg",
+      image: "/images/clergy/elder-hope.jpeg",
       email: "deacon.osei@wmc.org",
       phone: "+233 27 111 2222",
       location: "Accra, Ghana",
@@ -71,10 +71,10 @@ const ClergyPage: React.FC = () => {
     },
     {
       id: 5,
-      name: "Deacon David Addo",
+      name: "Elder Reuben Opata",
       title: "Deacon",
       description: "Supporting church services and providing assistance to families in need within our community.",
-      image: "/images/clergy/deacon.jpg",
+      image: "/images/clergy/reubenopata.jpg",
       email: "deacon.addo@wmc.org",
       phone: "+233 28 333 4444",
       location: "Accra, Ghana",
@@ -83,7 +83,7 @@ const ClergyPage: React.FC = () => {
     },
     {
       id: 6,
-      name: "Deaconess Grace Mensah",
+      name: "Deaconess Esi Nyatuame",
       title: "Senior Deaconess",
       description: "Leading our women's ministry and providing pastoral care to women and families in our congregation.",
       image: "/images/clergy/senior-deaconess.jpg",
@@ -95,7 +95,7 @@ const ClergyPage: React.FC = () => {
     },
     {
       id: 7,
-      name: "Deaconess Comfort Adjei",
+      name: "Deaconess Dadia",
       title: "Deaconess",
       description: "Supporting women's fellowship activities and providing spiritual guidance to young women.",
       image: "/images/clergy/deaconess.jpg",
@@ -357,12 +357,12 @@ const ClergyPage: React.FC = () => {
                   whileHover={{ y: -10 }}
                   className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100"
                 >
-                  <div className="relative h-48">
+                  <div className="relative h-64">
                     <Image
                       src={deacon.image}
                       alt={deacon.name}
                       fill
-                      className="object-cover"
+                      className="object-cover object-top"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-900/50 to-transparent"></div>
                     <div className="absolute top-4 left-4">

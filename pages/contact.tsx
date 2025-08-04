@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { FiMapPin, FiPhone, FiMail, FiClock, FiSend, FiCheck } from 'react-icons/fi';
+import { FiMapPin, FiPhone, FiMail, FiClock, FiSend, FiCheck, FiHeart } from 'react-icons/fi';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -61,8 +61,8 @@ const ContactPage: React.FC = () => {
       icon: <FiPhone className="w-6 h-6" />,
       title: "Phone",
       details: [
-        "+233 20 123 4567",
-        "+233 24 987 6543"
+        "+233 24 345 1929",
+        "+233 24 460 1628"
       ]
     },
     {
@@ -85,8 +85,7 @@ const ContactPage: React.FC = () => {
   ];
 
   const serviceTimes = [
-    { day: "Saturday", time: "10:00 AM", service: "Sabbath Service" },
-    { day: "Wednesday", time: "6:00 PM", service: "ShewBread" },
+    { day: "Sunday", time: "9:00 AM", service: "Sabbath Service" },
     { day: "Wednesday", time: "7:00 PM", service: "Wednesday Teachings" },
     { day: "Friday", time: "6:00 PM", service: "Friday Prayer Service" }
   ];

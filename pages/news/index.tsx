@@ -22,63 +22,63 @@ const NewsPage: React.FC = () => {
   const newsData: NewsPost[] = [
     {
       id: 1,
-      title: "Upcoming Passover Celebration - Community Gathering",
-      excerpt: "Join us for our annual Passover celebration as we commemorate this sacred time with fellowship, traditional foods, and meaningful worship. All members and visitors are welcome.",
-      author: "Pastor John Mensah",
-      date: "January 20, 2024",
-      readTime: "3 min read",
-      image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      title: "A.R.S WOMEN COUNCIL CELEBRATION - 67th Anniversary",
+      excerpt: "Celebrating the 67th Anniversary of the ARS Women's Council at the Abelemkpe Branch. A momentous occasion marking decades of dedicated service, spiritual growth, and community leadership.",
+      author: "ARS Women's Council",
+      date: "July 25th, 2025",
+      readTime: "5 min read",
+      image: "/images/news/wmc-14.png",
       category: "Events"
     },
     {
       id: 2,
-      title: "New Children's Fellowship Program Launches",
-      excerpt: "We're excited to announce the launch of our enhanced Children's Fellowship program, featuring age-appropriate Bible studies, creative activities, and character-building lessons.",
-      author: "Sister Mary Asante",
-      date: "January 18, 2024",
-      readTime: "2 min read",
-      image: "https://images.unsplash.com/photo-1607013251379-e6eecfffe234?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      category: "Ministries"
+      title: "WMC Youth Ministry Revival",
+      excerpt: "Our youth ministry continues to grow with exciting new programs and activities designed to engage young people in their faith journey.",
+      author: "Youth Ministry",
+      date: "July 20th, 2025",
+      readTime: "3 min read",
+      image: "/images/news/wmc-36.png",
+      category: "Youth"
     },
     {
       id: 3,
-      title: "Community Food Pantry Expands Service Hours",
-      excerpt: "Due to increased community need, our Food Pantry ministry is expanding service hours. We're also seeking volunteers to help serve our neighbors in need.",
-      author: "Elder Michael Asante",
-      date: "January 15, 2024",
+      title: "Community Outreach Program",
+      excerpt: "WMC's commitment to serving our community through various outreach programs and charitable activities.",
+      author: "Community Service Team",
+      date: "July 15th, 2025",
       readTime: "4 min read",
-      image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      image: "/images/news/wmc-38.png",
       category: "Community Service"
     },
     {
       id: 4,
-      title: "Bible Study Series: Walking in Faith",
-      excerpt: "Starting this Wednesday, join us for a 6-week Bible study series exploring what it means to walk by faith, not by sight. Study materials will be provided.",
-      author: "Pastor Sarah Williams",
-      date: "January 12, 2024",
-      readTime: "2 min read",
-      image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      title: "New Teaching Series: Spiritual Growth",
+      excerpt: "Join us for our new teaching series focused on spiritual growth and personal development in Christ.",
+      author: "Teaching Ministry",
+      date: "July 10th, 2025",
+      readTime: "6 min read",
+      image: "/images/news/wmc-40.png",
       category: "Teaching"
     },
     {
       id: 5,
-      title: "Youth Ministry Organizes Community Clean-Up",
-      excerpt: "Our Ascent Youth ministry is organizing a community clean-up event to serve our neighborhood. Join us in making a positive impact in our local area.",
-      author: "Brother Samuel Tetteh",
-      date: "January 10, 2024",
-      readTime: "3 min read",
-      image: "https://images.unsplash.com/photo-1529390079861-591de354faf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      category: "Youth"
+      title: "Men's Fellowship Meeting",
+      excerpt: "Monthly gathering of our men's fellowship group for prayer, study, and fellowship.",
+      author: "Men's Fellowship",
+      date: "July 5th, 2025",
+      readTime: "2 min read",
+      image: "/images/news/wmc-54.png",
+      category: "Ministries"
     },
     {
       id: 6,
-      title: "Sabbath Service Schedule Updates",
-      excerpt: "Please note the updated Sabbath service schedule for the coming month. We've added an additional early morning prayer session for those who wish to participate.",
-      author: "Church Administration",
-      date: "January 8, 2024",
-      readTime: "1 min read",
-      image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      category: "Announcements"
+      title: "Choir Practice Schedule Update",
+      excerpt: "Updated practice schedules for both Senior and Junior choirs with new repertoire preparation.",
+      author: "Music Ministry",
+      date: "July 1st, 2025",
+      readTime: "3 min read",
+      image: "/images/news/wmc-56.png",
+      category: "Ministries"
     }
   ];
 
@@ -121,7 +121,7 @@ const NewsPage: React.FC = () => {
         <section className="pt-24 pb-16 bg-gradient-to-br from-navy-900 to-navy-800 relative overflow-hidden">
           <div className="absolute inset-0">
             <Image
-              src="/images/pages/news-hero.jpg"
+              src="/images/news/wmc-14.png"
               alt="WMC News"
               fill
               className="object-cover opacity-20"
@@ -193,48 +193,39 @@ const NewsPage: React.FC = () => {
                       className="object-cover"
                     />
                     <div className="absolute top-4 left-4">
-                      <span className="bg-gold-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      <span className="bg-church-red text-white px-3 py-1 rounded-full text-sm font-semibold">
                         {post.category}
                       </span>
                     </div>
                   </div>
                   
                   <div className="p-6">
-                    <h2 className="text-xl font-bold text-navy-900 mb-3 line-clamp-2">
+                    <h3 className="text-xl font-bold text-navy-900 mb-3 line-clamp-2">
                       {post.title}
-                    </h2>
+                    </h3>
                     
                     <p className="text-gray-600 mb-4 leading-relaxed line-clamp-3">
                       {post.excerpt}
                     </p>
                     
                     <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                      <div className="flex items-center gap-4">
-                        <div className="flex items-center gap-1">
-                          <FiUser className="w-4 h-4" />
-                          <span>{post.author}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <FiClock className="w-4 h-4" />
-                          <span>{post.readTime}</span>
-                        </div>
+                      <div className="flex items-center gap-1">
+                        <FiUser className="w-4 h-4" />
+                        <span>{post.author}</span>
                       </div>
-                    </div>
-                    
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1 text-gray-500 text-sm">
+                      <div className="flex items-center gap-1">
                         <FiCalendar className="w-4 h-4" />
                         <span>{post.date}</span>
                       </div>
-                      
-                      <Link
-                        href={`/news/${post.id}`}
-                        className="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold transition-colors duration-200"
-                      >
-                        Read More
-                        <FiArrowRight className="ml-2 w-4 h-4" />
-                      </Link>
                     </div>
+                    
+                    <Link
+                      href={post.id === 1 ? `/news/${post.id}` : `/news/${post.id}`}
+                      className="inline-flex items-center text-church-red hover:text-red-800 font-semibold transition-colors duration-200"
+                    >
+                      {post.id === 1 ? 'Read Full Article' : 'Read More'}
+                      <FiArrowRight className="ml-2 w-4 h-4" />
+                    </Link>
                   </div>
                 </motion.article>
               ))}

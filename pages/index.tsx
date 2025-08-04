@@ -1,25 +1,42 @@
-import React from 'react';
-import Head from 'next/head';
-import { motion } from 'framer-motion';
-import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
-import Ministries from '@/components/Ministries';
-import Sermons from '@/components/Sermons';
-import Footer from '@/components/Footer';
+import React from "react";
+import Head from "next/head";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import { FiCalendar, FiUser, FiArrowRight } from "react-icons/fi";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import Ministries from "@/components/Ministries";
+import News from "@/components/News";
+import Sermons from "@/components/Sermons";
+import Footer from "@/components/Footer";
 
 const Home: React.FC = () => {
   return (
     <>
       <Head>
         <title>Apostles Revelations Society - Wovenu Memorial Chapel</title>
-        <meta name="description" content="Come worship with us and let God meet you where you are at. Apostles Revelations Society exists to show our city the love of God through gospel-focused worship and bold community service." />
+        <meta
+          name="description"
+          content="Come worship with us and let God meet you where you are at. Apostles Revelations Society exists to show our city the love of God through gospel-focused worship and bold community service."
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:title" content="Apostles Revelations Society - Wovenu Memorial Chapel" />
-        <meta property="og:description" content="Come worship with us and let God meet you where you are at. Join us for Sabbath service and community fellowship." />
+        <meta
+          property="og:title"
+          content="Apostles Revelations Society - Wovenu Memorial Chapel"
+        />
+        <meta
+          property="og:description"
+          content="Come worship with us and let God meet you where you are at. Join us for Sabbath service and community fellowship."
+        />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        />
       </Head>
 
       <div className="min-h-screen bg-white">
@@ -48,7 +65,9 @@ const Home: React.FC = () => {
                   viewport={{ once: true }}
                   className="text-2xl md:text-3xl text-navy-900 font-serif leading-relaxed italic"
                 >
-                  "Apostles Revelations Society exists to show our city the love of God through gospel-focused worship and bold community service."
+                  "Apostles Revelations Society exists to show our nation and
+                  the world the love of God through His Commandments and
+                  Holiness."
                 </motion.p>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -58,7 +77,8 @@ const Home: React.FC = () => {
                   className="mt-8 text-center"
                 >
                   <p className="text-lg text-gray-600 mb-6">
-                    By this everyone will know that you are my disciples, if you love one another.
+                    By this everyone will know that you are my disciples, if you
+                    love one another.
                   </p>
                   <p className="text-gold-600 font-semibold">John 13:35</p>
                 </motion.div>
@@ -66,11 +86,13 @@ const Home: React.FC = () => {
             </div>
           </motion.section>
 
+          {/* News Section */}
+          <News />
+
           {/* Visitors and Members Section */}
           <section className="section-padding bg-gradient-to-br from-primary-50 to-gold-50">
             <div className="container-width">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                
                 {/* Visitors */}
                 <motion.div
                   initial={{ opacity: 0, x: -30 }}
@@ -80,12 +102,14 @@ const Home: React.FC = () => {
                   className="relative"
                 >
                   <div className="bg-primary-600 text-white p-8 rounded-2xl shadow-2xl">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-6">Visitors</h2>
-                                         <p className="text-xl mb-6 leading-relaxed">
-                       New questions about our church?
-                       <br />
-                       Get all the answers to help you feel at home.
-                     </p>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                      Visitors
+                    </h2>
+                    <p className="text-xl mb-6 leading-relaxed">
+                      New questions about our church?
+                      <br />
+                      Get all the answers to help you feel at home.
+                    </p>
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
@@ -104,8 +128,10 @@ const Home: React.FC = () => {
                   viewport={{ once: true }}
                   className="relative"
                 >
-                  <div className="bg-gold-500 text-white p-8 rounded-2xl shadow-2xl">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-6">Members</h2>
+                  <div className="bg-church-green text-white p-8 rounded-2xl shadow-2xl">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                      Members
+                    </h2>
                     <p className="text-xl mb-6 leading-relaxed">
                       Log in to connect with the church membership online.
                     </p>
@@ -118,7 +144,6 @@ const Home: React.FC = () => {
                     </motion.button>
                   </div>
                 </motion.div>
-
               </div>
             </div>
           </section>
@@ -162,13 +187,12 @@ const Home: React.FC = () => {
                 transition={{ duration: 0.6, delay: 0.6 }}
                 viewport={{ once: true }}
               >
-                                 <button className="btn-primary text-lg px-8 py-4">
-                   Learn more about our faith
-                 </button>
+                <button className="btn-primary text-lg px-8 py-4">
+                  Learn more about our faith
+                </button>
               </motion.div>
             </div>
           </motion.section>
-
         </main>
 
         {/* Footer */}
@@ -178,4 +202,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home; 
+export default Home;

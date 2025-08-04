@@ -2,9 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FiUsers, FiHeart, FiStar, FiArrowRight } from 'react-icons/fi';
+import { FiUsers, FiHeart, FiStar, FiArrowRight, FiCamera, FiShield } from 'react-icons/fi';
 
-interface Ministry {
+interface Group {
   id: number;
   title: string;
   description: string;
@@ -13,8 +13,8 @@ interface Ministry {
   href: string;
 }
 
-const Ministries: React.FC = () => {
-  const ministries: Ministry[] = [
+const Groups: React.FC = () => {
+  const groups: Group[] = [
     {
       id: 1,
       title: "Senior Choir",
@@ -47,8 +47,22 @@ const Ministries: React.FC = () => {
       icon: <FiHeart className="w-6 h-6" />,
       href: "/womens-fellowship"
     },
- 
-
+    {
+        id: 5,
+        title: "Usher's Ministry",
+        description: "Creating a welcoming environment for all who enter our doors, ensuring a smooth and orderly worship experience.",
+        image: "/images/groups/ushers1.jpeg", 
+        icon: <FiShield className="w-6 h-6" />,
+        href: "/ushers-ministry"
+      },
+      {
+        id: 6,
+        title: "WMC Media Team",
+        description: "Capturing and sharing the moments of our church life through photography, videography, and social media.",
+        image: "/images/groups/mediateam.jpeg",
+        icon: <FiCamera className="w-6 h-6" />,
+        href: "/wmc-media-team"
+      }
   ];
 
   const containerVariants = {
@@ -73,7 +87,7 @@ const Ministries: React.FC = () => {
   };
 
   return (
-    <section id="ministries" className="section-padding bg-gray-50">
+    <section id="groups" className="section-padding bg-gray-50">
       <div className="container-width">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -95,37 +109,37 @@ const Ministries: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {ministries.map((ministry) => (
+          {groups.map((group) => (
             <motion.div
-              key={ministry.id}
+              key={group.id}
               variants={cardVariants}
               whileHover={{ y: -10 }}
               className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
             >
               <div className="relative h-64">
                 <Image
-                  src={ministry.image}
-                  alt={ministry.title}
+                  src={group.image}
+                  alt={group.title}
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-900/50 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
-                  {ministry.icon}
+                  {group.icon}
                 </div>
               </div>
               
               <div className="p-6">
                 <h3 className="text-xl font-bold text-navy-900 mb-3">
-                  {ministry.title}
+                  {group.title}
                 </h3>
                 <p className="text-gray-600 mb-4 leading-relaxed">
-                  {ministry.description}
+                  {group.description}
                 </p>
                 <Link
-                  href={ministry.href}
+                  href={group.href}
                   className="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold transition-colors duration-200"
                 >
                   Learn More
@@ -135,24 +149,9 @@ const Ministries: React.FC = () => {
             </motion.div>
           ))}
         </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <Link
-            href="/groups"
-            className="btn-primary text-lg px-8 py-4 font-semibold tracking-wide"
-          >
-            View All Groups
-          </Link>
-        </motion.div>
       </div>
     </section>
   );
 };
 
-export default Ministries; 
+export default Groups;

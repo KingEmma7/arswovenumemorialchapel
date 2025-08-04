@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { FiClock, FiUsers, FiMapPin, FiHeart, FiBookOpen, FiCoffee } from 'react-icons/fi';
+import { FiClock, FiUsers, FiMapPin, FiHeart, FiBookOpen, FiCoffee, FiCalendar, FiStar } from 'react-icons/fi';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -10,33 +10,33 @@ const ShewBreadPage: React.FC = () => {
   const serviceElements = [
     {
       icon: <FiHeart className="w-6 h-6" />,
-      title: "Prayer & Meditation",
-      description: "Begin with quiet reflection and prayer to prepare our hearts for spiritual nourishment."
-    },
-    {
-      icon: <FiBookOpen className="w-6 h-6" />,
-      title: "Scripture Study",
-      description: "Deep dive into God's word with focused study and discussion of biblical passages."
+      title: "Holy Preparation",
+      description: "A week of spiritual preparation, especially the three days leading to Sunday, maintaining holiness and purity."
     },
     {
       icon: <FiUsers className="w-6 h-6" />,
-      title: "Group Discussion",
-      description: "Share insights, ask questions, and learn from one another in a supportive environment."
+      title: "Saturday Evening Fellowship",
+      description: "Join us the evening before ShewBread Sunday for fellowship, prayer, and spiritual preparation."
+    },
+    {
+      icon: <FiStar className="w-6 h-6" />,
+      title: "White Prayer Gown",
+      description: "Recommended to wear your white prayer gown as a symbol of purity and reverence for this holy service."
+    },
+    {
+      icon: <FiBookOpen className="w-6 h-6" />,
+      title: "Communion Service",
+      description: "A sacred communion service where we partake of the bread and wine in remembrance of Christ's sacrifice."
     },
     {
       icon: <FiHeart className="w-6 h-6" />,
-      title: "Testimonies",
-      description: "Hear and share personal testimonies of God's work in our lives and community."
+      title: "Prayer & Worship",
+      description: "Dedicated time for prayer, worship, and spiritual reflection during this holy communion."
     },
     {
       icon: <FiCoffee className="w-6 h-6" />,
       title: "Fellowship",
-      description: "Build relationships over refreshments and meaningful conversations."
-    },
-    {
-      icon: <FiHeart className="w-6 h-6" />,
-      title: "Closing Prayer",
-      description: "End with prayer, committing our week to God and seeking His guidance."
+      description: "Build relationships and community through shared spiritual experiences and refreshments."
     }
   ];
 
@@ -44,7 +44,7 @@ const ShewBreadPage: React.FC = () => {
     <>
       <Head>
         <title>ShewBread - Apostles Revelations Society</title>
-        <meta name="description" content="Join us every Wednesday at 6:00 PM for ShewBread, a special service focused on spiritual nourishment through prayer, meditation, and sharing of God's word." />
+        <meta name="description" content="Join us for ShewBread, our quarterly communion service. A time of holy preparation, fellowship, and remembrance of Christ's sacrifice." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -57,7 +57,7 @@ const ShewBreadPage: React.FC = () => {
           <div className="absolute inset-0">
             <Image
               src="/images/pages/shewbread-hero.jpg"
-              alt="ShewBread Service"
+              alt="ShewBread Communion Service"
               fill
               className="object-cover opacity-20"
             />
@@ -73,17 +73,17 @@ const ShewBreadPage: React.FC = () => {
                 ShewBread
               </h1>
               <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
-                A special service focused on spiritual nourishment through prayer, meditation, and sharing of God's word
+                Our quarterly communion service - a sacred time of holy preparation and remembrance
               </p>
               
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <div className="flex items-center gap-2 text-gold-400">
-                  <FiClock className="w-6 h-6" />
-                  <span className="text-xl font-semibold">Every Wednesday at 6:00 PM</span>
+                <div className="flex items-center gap-2 text-gold-500">
+                  <FiCalendar className="w-6 h-6" />
+                  <span className="text-xl font-semibold">Every Three Months</span>
                 </div>
-                <div className="flex items-center gap-2 text-gold-400">
+                <div className="flex items-center gap-2 text-gold-500">
                   <FiMapPin className="w-6 h-6" />
-                  <span className="text-xl font-semibold">Fellowship Hall</span>
+                  <span className="text-xl font-semibold">Musuku</span>
                 </div>
               </div>
             </motion.div>
@@ -101,30 +101,31 @@ const ShewBreadPage: React.FC = () => {
                 viewport={{ once: true }}
               >
                 <h2 className="text-4xl md:text-5xl font-bold text-navy-900 mb-6">
-                  Spiritual Nourishment
+                  Holy Communion Service
                 </h2>
                 <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                  ShewBread is our midweek spiritual refreshment service, inspired by the biblical showbread 
-                  that was placed in the temple as a continual offering to God. Just as the showbread 
-                  sustained the priests, this service sustains our spiritual lives throughout the week.
+                  ShewBread is our quarterly communion service, inspired by the biblical showbread 
+                  that was placed in the temple as a continual offering to God. This is a sacred time 
+                  where we prepare our hearts, maintain holiness, and partake of the bread and wine 
+                  in remembrance of Christ's sacrifice.
                 </p>
                 
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 bg-gold-500 rounded-full"></div>
-                    <span className="text-gray-700">Intimate, interactive setting</span>
+                    <span className="text-gray-700">Week of holy preparation required</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 bg-gold-500 rounded-full"></div>
-                    <span className="text-gray-700">Deep biblical study and discussion</span>
+                    <span className="text-gray-700">Special focus on the three days before Sunday</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 bg-gold-500 rounded-full"></div>
-                    <span className="text-gray-700">Personal testimonies and sharing</span>
+                    <span className="text-gray-700">Saturday evening fellowship</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 bg-gold-500 rounded-full"></div>
-                    <span className="text-gray-700">Prayer support and encouragement</span>
+                    <span className="text-gray-700">White prayer gown recommended</span>
                   </div>
                 </div>
               </motion.div>
@@ -137,31 +138,27 @@ const ShewBreadPage: React.FC = () => {
                 className="relative"
               >
                 <div className="bg-white rounded-xl p-8 shadow-lg">
-                  <h3 className="text-2xl font-bold text-navy-900 mb-6">Service Schedule</h3>
+                  <h3 className="text-2xl font-bold text-navy-900 mb-6">Preparation Schedule</h3>
                   <div className="space-y-4">
                     <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                      <span className="font-medium">Welcome & Opening Prayer</span>
+                      <span className="font-medium">Week of Preparation</span>
+                      <span className="text-gold-600 font-semibold">Monday - Saturday</span>
+                    </div>
+                    <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                      <span className="font-medium">Three Days Focus</span>
+                      <span className="text-gold-600 font-semibold">Thursday - Saturday</span>
+                    </div>
+                    <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                      <span className="font-medium">Saturday Evening Fellowship</span>
                       <span className="text-gold-600 font-semibold">6:00 PM</span>
                     </div>
                     <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                      <span className="font-medium">Scripture Reading</span>
-                      <span className="text-gold-600 font-semibold">6:10 PM</span>
-                    </div>
-                    <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                      <span className="font-medium">Group Discussion</span>
-                      <span className="text-gold-600 font-semibold">6:20 PM</span>
-                    </div>
-                    <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                      <span className="font-medium">Testimonies</span>
-                      <span className="text-gold-600 font-semibold">6:45 PM</span>
-                    </div>
-                    <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                      <span className="font-medium">Fellowship & Refreshments</span>
-                      <span className="text-gold-600 font-semibold">7:00 PM</span>
+                      <span className="font-medium">ShewBread Sunday Service</span>
+                      <span className="text-gold-600 font-semibold">9:00 AM</span>
                     </div>
                     <div className="flex justify-between items-center py-3">
-                      <span className="font-medium">Closing Prayer</span>
-                      <span className="text-gold-600 font-semibold">7:15 PM</span>
+                      <span className="font-medium">Communion Service</span>
+                      <span className="text-gold-600 font-semibold">During Service</span>
                     </div>
                   </div>
                 </div>
@@ -184,7 +181,7 @@ const ShewBreadPage: React.FC = () => {
                 Elements of ShewBread
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Each element is designed to nourish your soul and strengthen your faith
+                Each element is designed to prepare your heart for this sacred communion service
               </p>
             </motion.div>
 
@@ -223,10 +220,10 @@ const ShewBreadPage: React.FC = () => {
               viewport={{ once: true }}
             >
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                Join Us This Wednesday
+                Prepare Your Heart
               </h2>
               <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-                Experience spiritual nourishment and community support in a warm, welcoming environment
+                Join us for this sacred communion service. Remember to maintain holiness in the week leading up to ShewBread.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button className="bg-gold-500 hover:bg-gold-600 text-white font-bold py-4 px-8 rounded-lg transition-colors duration-200">

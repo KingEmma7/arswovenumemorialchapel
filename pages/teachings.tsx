@@ -25,9 +25,9 @@ const TeachingsPage: React.FC = () => {
       id: 1,
       title: "Walking in Faith: A Study of Hebrews 11",
       description: "Explore the lives of biblical heroes and learn how to apply their faith principles to our daily lives.",
-      teacher: "Pastor John Mensah",
-      date: "January 15, 2024",
-      duration: "45 min",
+      teacher: "Bishop Veliane Wovenu Goka",
+      date: "July 3, 2022",
+      duration: "22 min",
       image: "/images/pages/teachings-hero.jpg",
       category: "Bible Study",
       type: "video"
@@ -36,7 +36,7 @@ const TeachingsPage: React.FC = () => {
       id: 2,
       title: "The Fruit of the Spirit: Living in Love",
       description: "Understanding and cultivating the fruit of the Spirit in our relationships and daily interactions.",
-      teacher: "Pastor Sarah Williams",
+      teacher: "Bishop Sinametor Wovenu Tagbor",
       date: "January 8, 2024",
       duration: "38 min",
       image: "/images/pages/teachings-hero.jpg",
@@ -47,7 +47,7 @@ const TeachingsPage: React.FC = () => {
       id: 3,
       title: "Prayer: Our Communication with God",
       description: "Deepen your prayer life through biblical principles and practical application.",
-      teacher: "Elder Michael Asante",
+      teacher: "Elder Reuben Opata",
       date: "January 1, 2024",
       duration: "42 min",
       image: "/images/pages/teachings-hero.jpg",
@@ -170,21 +170,17 @@ const TeachingsPage: React.FC = () => {
             >
               <div className="grid grid-cols-1 lg:grid-cols-2">
                 <div className="relative h-64 lg:h-full">
-                  <Image
-                    src={teachings[0].image}
-                    alt={teachings[0].title}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-900/50 to-transparent"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="bg-white/20 backdrop-blur-sm border-2 border-white/50 rounded-full p-6 text-white hover:bg-gold-500/80 hover:border-gold-500 transition-all duration-300"
-                    >
-                      <FiPlay className="w-8 h-8 ml-1" />
-                    </motion.button>
+                  <div className="w-full h-full flex items-center justify-center bg-gray-100">
+                    <iframe 
+                      src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fweb.facebook.com%2F37Musukuwovenumemorialchapel%2Fvideos%2F760058415010978%2F&show_text=false&width=560&t=0" 
+                      width="100%" 
+                      height="100%" 
+                      style={{border: 'none', overflow: 'hidden'}} 
+                      scrolling="no" 
+                      frameBorder="0" 
+                      allowFullScreen={true} 
+                      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                    ></iframe>
                   </div>
                 </div>
                 
@@ -219,14 +215,15 @@ const TeachingsPage: React.FC = () => {
                   </div>
                   
                   <div className="flex gap-4">
-                    <button className="bg-gold-500 hover:bg-gold-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center gap-2">
+                    <a 
+                      href="https://web.facebook.com/37Musukuwovenumemorialchapel/videos/760058415010978/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-gold-500 hover:bg-gold-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center gap-2"
+                    >
                       <FiPlay className="w-4 h-4" />
-                      Watch Now
-                    </button>
-                    <button className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center gap-2">
-                      <FiDownload className="w-4 h-4" />
-                      Download
-                    </button>
+                      Watch on Facebook
+                    </a>
                   </div>
                 </div>
               </div>

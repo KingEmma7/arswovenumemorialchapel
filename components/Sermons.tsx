@@ -18,17 +18,17 @@ const Sermons: React.FC = () => {
   const sermons: Sermon[] = [
     {
       id: 1,
-      title: "Light of the World",
-      speaker: "Pastor John Mensah",
+      title: "Holiness is the key to victory",
+      speaker: "Bishop Veliane Wovenu Goka",
       date: "Jan 15, 2024",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      image: "/images/clergy/Bishop-Veliane-6.jpeg",
       description: "Exploring how we can be a light in the darkness and shine God's love in our communities.",
       duration: "45 min"
     },
     {
       id: 2,
       title: "Victory in Sanctuary",
-      speaker: "Pastor Sarah Williams",
+      speaker: "Bishop Sinametor Wovenu Tagbor",
       date: "Jan 08, 2024",
       image: "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
       description: "Understanding God's victory and how it transforms our lives through sanctuary worship.",
@@ -37,9 +37,9 @@ const Sermons: React.FC = () => {
     {
       id: 3,
       title: "We Walk by Faith, Not by Sight",
-      speaker: "Elder Michael Asante",
+      speaker: "Elder Hope Goka",
       date: "Jan 01, 2024",
-      image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      image: "/images/clergy/elder-hope.jpeg",
       description: "Living by faith in uncertain times and trusting God's plan for our lives.",
       duration: "42 min"
     }
@@ -113,12 +113,12 @@ const Sermons: React.FC = () => {
               whileHover={{ y: -10 }}
               className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100"
             >
-              <div className="relative h-48 group">
+              <div className="relative h-64 group">
                 <Image
                   src={sermon.image}
                   alt={sermon.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="object-cover group-hover:scale-105 object-top transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-navy-900/40 group-hover:bg-navy-900/60 transition-colors duration-300"></div>
                 

@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX, FiChevronDown, FiHome } from 'react-icons/fi';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const menuItems = [
     { name: 'WMC News', href: '/news' },
@@ -30,6 +32,8 @@ const Navbar: React.FC = () => {
         { name: 'Brass Band', href: '/brass-band' },
         { name: 'Senior Choir', href: '/senior-choir' },
         { name: 'Junior Choir', href: '/junior-choir' },
+        { name: 'Usher\'s Ministry', href: '/ushers-ministry' },
+        { name: 'WMC Media Team', href: '/wmc-media-team' },
       ]
     },
     { name: 'Clergy', href: '/clergy' },
@@ -42,21 +46,54 @@ const Navbar: React.FC = () => {
     setActiveDropdown(activeDropdown === menuName ? null : menuName);
   };
 
+  const handleMouseEnter = (menuName: string) => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+    }
+    setActiveDropdown(menuName);
+  };
+
+  const handleMouseLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 150); // Small delay to prevent immediate hiding
+  };
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (dropdownTimeoutRef.current) {
+        clearTimeout(dropdownTimeoutRef.current);
+      }
+    };
+  }, []);
+
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 bg-navy-900/95 backdrop-blur-sm z-50 shadow-lg"
+      className="fixed top-0 left-0 right-0 bg-navy-900/95 backdrop-blur-sm z-50"
+      style={{ zIndex: 1000 }}
     >
       <div className="container-width">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <FiHome className="h-8 w-8 text-gold-500" />
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              animate={{ y: [0, -5, 0] }}
+              transition={{ 
+                y: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+                scale: { duration: 0.2 }
+              }}
+            >
+              <Image src="/images/arslogo.png" alt="ARS logo" width={100} height={100} />
+            </motion.div>
             <div className="text-white">
               <div className="font-bold text-lg">Apostles Revelations Society</div>
-              <div className="text-sm text-gray-300">Wovenu Memorial Chapel</div>
+              <div className="text-sm text-gray-300 uppercase font-bold">Wovenu Memorial Chapel</div>
             </div>
           </Link>
 
@@ -69,12 +106,12 @@ const Navbar: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="relative"
-                onMouseEnter={() => item.submenu && setActiveDropdown(item.name)}
-                onMouseLeave={() => setActiveDropdown(null)}
+                onMouseEnter={() => item.submenu && handleMouseEnter(item.name)}
+                onMouseLeave={() => item.submenu && handleMouseLeave()}
               >
                 {item.submenu ? (
                   <div className="flex items-center space-x-1 cursor-pointer">
-                    <span className="text-white hover:text-gold-400 transition-colors duration-200 font-medium">
+                    <span className="text-white hover:text-gold-500 transition-colors duration-200 font-medium">
                       {item.name}
                     </span>
                     <FiChevronDown className={`w-4 h-4 text-white transition-transform duration-200 ${
@@ -84,7 +121,7 @@ const Navbar: React.FC = () => {
                 ) : (
                   <Link
                     href={item.href}
-                    className="text-white hover:text-gold-400 transition-colors duration-200 font-medium"
+                    className="text-white hover:text-gold-500 transition-colors duration-200 font-medium"
                   >
                     {item.name}
                   </Link>
@@ -97,15 +134,15 @@ const Navbar: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     className="absolute top-full left-0 mt-2 w-48 bg-navy-800 rounded-lg shadow-xl z-50"
-                    onMouseEnter={() => setActiveDropdown(item.name)}
-                    onMouseLeave={() => setActiveDropdown(null)}
+                    onMouseEnter={() => handleMouseEnter(item.name)}
+                    onMouseLeave={handleMouseLeave}
                   >
                     <div className="py-2">
                       {item.submenu.map((subItem) => (
                         <Link
                           key={subItem.name}
                           href={subItem.href}
-                          className="block px-4 py-2 text-white hover:bg-navy-700 hover:text-gold-400 transition-colors duration-200"
+                          className="block px-4 py-2 text-white hover:bg-navy-700 hover:text-gold-500 transition-colors duration-200"
                         >
                           {subItem.name}
                         </Link>
@@ -149,7 +186,7 @@ const Navbar: React.FC = () => {
                       <div>
                         <button
                           onClick={() => toggleDropdown(item.name)}
-                          className="w-full flex items-center justify-between px-4 py-3 text-white hover:bg-navy-700 hover:text-gold-400 transition-colors duration-200"
+                          className="w-full flex items-center justify-between px-4 py-3 text-white hover:bg-navy-700 hover:text-gold-500 transition-colors duration-200"
                         >
                           <span>{item.name}</span>
                           <FiChevronDown className={`w-4 h-4 transition-transform duration-200 ${
@@ -167,7 +204,7 @@ const Navbar: React.FC = () => {
                               <Link
                                 key={subItem.name}
                                 href={subItem.href}
-                                className="block px-8 py-2 text-white hover:bg-navy-600 hover:text-gold-400 transition-colors duration-200"
+                                className="block px-8 py-2 text-white hover:bg-navy-600 hover:text-gold-500 transition-colors duration-200"
                                 onClick={() => setIsOpen(false)}
                               >
                                 {subItem.name}
@@ -179,7 +216,7 @@ const Navbar: React.FC = () => {
                     ) : (
                       <Link
                         href={item.href}
-                        className="block px-4 py-3 text-white hover:bg-navy-700 hover:text-gold-400 transition-colors duration-200"
+                        className="block px-4 py-3 text-white hover:bg-navy-700 hover:text-gold-500 transition-colors duration-200"
                         onClick={() => setIsOpen(false)}
                       >
                         {item.name}

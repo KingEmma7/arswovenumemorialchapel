@@ -68,7 +68,7 @@ const Footer: React.FC = () => {
                   <FiMapPin className="w-5 h-5 text-gold-500 mt-1 flex-shrink-0" />
                   <div>
                     <p className="text-gray-300">
-                      123 Faith Avenue<br />
+                      Asore Junction, Musuku<br />
                       Accra, Ghana<br />
                       00233
                     </p>
@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
                 
                 <div className="flex items-center space-x-3">
                   <FiPhone className="w-5 h-5 text-gold-500" />
-                  <span className="text-gray-300">+233 123 456 789</span>
+                  <span className="text-gray-300">+233 24 423 0000</span>
                 </div>
                 
                 <div className="flex items-center space-x-3">

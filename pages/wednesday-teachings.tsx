@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { FiClock, FiUsers, FiMapPin, FiBookOpen, FiHeart, FiCoffee } from 'react-icons/fi';
+import { FiClock, FiUsers, FiMapPin, FiBookOpen, FiHeart, FiCoffee, FiUser } from 'react-icons/fi';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -52,7 +52,7 @@ const WednesdayTeachingsPage: React.FC = () => {
     <>
       <Head>
         <title>Wednesday Teachings - Apostles Revelations Society</title>
-        <meta name="description" content="Join us every Wednesday at 7:00 PM for Wednesday Teachings, where we dive deep into God's word through Bible study, discussion, and prayer." />
+        <meta name="description" content="Join us every Wednesday at 7:00 PM for Wednesday Teachings, led by Elder Hope Goka. Deep dive into God's word through Bible study, discussion, and prayer." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -84,15 +84,20 @@ const WednesdayTeachingsPage: React.FC = () => {
                 Deep dive into God's word through Bible study, discussion, and prayer
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <div className="flex items-center gap-2 text-gold-400">
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-6">
+                <div className="flex items-center gap-2 text-gold-500">
                   <FiClock className="w-6 h-6" />
                   <span className="text-xl font-semibold">Every Wednesday at 7:00 PM</span>
                 </div>
-                <div className="flex items-center gap-2 text-gold-400">
+                <div className="flex items-center gap-2 text-gold-500">
                   <FiMapPin className="w-6 h-6" />
-                  <span className="text-xl font-semibold">Main Hall</span>
+                  <span className="text-xl font-semibold">Musuku</span>
                 </div>
+              </div>
+              
+              <div className="flex items-center justify-center gap-2 text-gold-500">
+                <FiUser className="w-6 h-6" />
+                <span className="text-xl font-semibold">Led by Elder Hope Goka</span>
               </div>
             </motion.div>
           </div>
@@ -112,9 +117,9 @@ const WednesdayTeachingsPage: React.FC = () => {
                   Deep Biblical Learning
                 </h2>
                 <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                  Wednesday Teachings is our dedicated time for in-depth biblical study and spiritual growth. 
-                  This service focuses on equipping believers with a deeper understanding of God's word and 
-                  practical applications for daily Christian living.
+                  Wednesday Teachings is our dedicated time for in-depth biblical study and spiritual growth, 
+                  led by Elder Hope Goka. This service focuses on equipping believers with a deeper understanding 
+                  of God's word and practical applications for daily Christian living.
                 </p>
                 
                 <div className="space-y-4">
@@ -166,6 +171,16 @@ const WednesdayTeachingsPage: React.FC = () => {
                     <div className="flex justify-between items-center py-3">
                       <span className="font-medium">Fellowship</span>
                       <span className="text-gold-600 font-semibold">8:30 PM</span>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-6 pt-6 border-t border-gray-200">
+                    <div className="flex items-center gap-3">
+                      <FiUser className="w-5 h-5 text-gold-600" />
+                      <div>
+                        <span className="font-medium text-gray-700">Led by:</span>
+                        <span className="text-gold-600 font-semibold ml-2">Elder Hope Goka</span>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -44,7 +44,7 @@ const SabbathServicePage: React.FC = () => {
     <>
       <Head>
         <title>Sabbath Service - Apostles Revelations Society</title>
-        <meta name="description" content="Join us every Saturday at 10:00 AM for our main Sabbath Service. Experience worship, teaching, and fellowship in a welcoming community." />
+        <meta name="description" content="Join us every Sunday at 9:00 AM for our main Sabbath Service. Experience worship, teaching, and fellowship in a welcoming community." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -53,10 +53,10 @@ const SabbathServicePage: React.FC = () => {
         <Navbar />
         
         {/* Hero Section */}
-        <section className="pt-24 pb-16 bg-gradient-to-br from-navy-900 to-navy-800 relative overflow-hidden">
+        <section className="pt-24 h-1/2 pb-16 bg-gradient-to-br from-navy-900 to-navy-800 relative overflow-hidden">
           <div className="absolute inset-0">
             <Image
-              src="/images/pages/sabbath-service-hero.jpg"
+              src="/images/clergy/bishop-veliane-6.jpeg"
               alt="Sabbath Service"
               fill
               className="object-cover opacity-20"
@@ -79,11 +79,11 @@ const SabbathServicePage: React.FC = () => {
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                 <div className="flex items-center gap-2 text-gold-400">
                   <FiClock className="w-6 h-6" />
-                  <span className="text-xl font-semibold">Every Saturday at 10:00 AM</span>
+                  <span className="text-xl font-semibold">Every Sunday at 9:00 AM</span>
                 </div>
                 <div className="flex items-center gap-2 text-gold-400">
                   <FiMapPin className="w-6 h-6" />
-                  <span className="text-xl font-semibold">Main Sanctuary</span>
+                  <span className="text-xl font-semibold">Musuku</span>
                 </div>
               </div>
             </motion.div>
@@ -140,28 +140,28 @@ const SabbathServicePage: React.FC = () => {
                   <h3 className="text-2xl font-bold text-navy-900 mb-6">Service Schedule</h3>
                   <div className="space-y-4">
                     <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                      <span className="font-medium">Welcome & Announcements</span>
-                      <span className="text-gold-600 font-semibold">10:00 AM</span>
+                      <span className="font-medium">Welcome & Thanksgiving Prayers</span>
+                      <span className="text-gold-600 font-semibold">9:00 AM</span>
                     </div>
                     <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                      <span className="font-medium">Worship & Praise</span>
-                      <span className="text-gold-600 font-semibold">10:10 AM</span>
-                    </div>
-                    <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                      <span className="font-medium">Scripture Reading</span>
-                      <span className="text-gold-600 font-semibold">10:25 AM</span>
+                      <span className="font-medium">Song Ministrations by Various Groups</span>
+                      <span className="text-gold-600 font-semibold">9:30 AM</span>
                     </div>
                     <div className="flex justify-between items-center py-3 border-b border-gray-200">
                       <span className="font-medium">Sermon</span>
-                      <span className="text-gold-600 font-semibold">10:35 AM</span>
+                      <span className="text-gold-600 font-semibold">10:30 AM</span>
                     </div>
                     <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                      <span className="font-medium">Communion</span>
-                      <span className="text-gold-600 font-semibold">11:15 AM</span>
+                      <span className="font-medium">Offering</span>
+                      <span className="text-gold-600 font-semibold">11:00 AM</span>
+                    </div>
+                    <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                      <span className="font-medium">Announcements</span>
+                      <span className="text-gold-600 font-semibold">11:30 AM</span>
                     </div>
                     <div className="flex justify-between items-center py-3">
-                      <span className="font-medium">Fellowship</span>
-                      <span className="text-gold-600 font-semibold">11:30 AM</span>
+                      <span className="font-medium">Closing Prayer</span>
+                      <span className="text-gold-600 font-semibold">12:00 AM</span>
                     </div>
                   </div>
                 </div>
