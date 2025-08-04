@@ -89,8 +89,14 @@ const Home: React.FC = () => {
           {/* News Section */}
           <News />
 
-          {/* Visitors and Members Section */}
-          <section className="section-padding bg-gradient-to-br from-primary-50 to-gold-50">
+          {/* Ministries Section */}
+          <Ministries />
+
+          {/* Sermons Section */}
+          <Sermons />
+
+                    {/* Visitors and Members Section */}
+                    <section className="section-padding bg-gradient-to-br from-primary-50 to-gold-50">
             <div className="container-width">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 {/* Visitors */}
@@ -147,12 +153,6 @@ const Home: React.FC = () => {
               </div>
             </div>
           </section>
-
-          {/* Ministries Section */}
-          <Ministries />
-
-          {/* Sermons Section */}
-          <Sermons />
 
           {/* Call to Action Section */}
           <motion.section

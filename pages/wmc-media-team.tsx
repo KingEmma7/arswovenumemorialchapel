@@ -51,10 +51,13 @@ const MediaTeamPage: React.FC = () => (
           className="object-cover object-center"
           priority
         />
-        <div className="relative z-10 flex h-full items-center justify-center text-center">
+        {/* Removed overlay here */}
+        <div className="relative z-10 flex h-full items-center justify-center text-center p-4">
           <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1, transition: { duration: 0.8, delay: 0.3 } }}
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3, type: 'spring', stiffness: 120 }}
+            className="bg-black bg-opacity-50 p-6 rounded-lg shadow-lg backdrop-blur-sm"
           >
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-4">WMC Media Team</h1>
             <p className="text-xl md:text-2xl text-gold-200 max-w-3xl mx-auto">

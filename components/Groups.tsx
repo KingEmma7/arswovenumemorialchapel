@@ -34,21 +34,37 @@ const Groups: React.FC = () => {
     {
       id: 3,
       title: "Junior Choir",
-      description: "Nurturing the faith of our youngest members through age-appropriate Bible studies and activities.",
+      description: "Young voices praising God through song and developing musical talents in a nurturing environment.",
       image: "/images/groups/juniorchoir.jpg",
       icon: <FiUsers className="w-6 h-6" />,
-      href: "/childrens-fellowship"
+      href: "/junior-choir"
     },
     {
       id: 4,
       title: "Men's Fellowship",
-      description: "A supportive community where women grow in faith, build relationships, and serve together.",
+      description: "A brotherhood where men support each other in their spiritual journey and leadership roles.",
       image: "/images/groups/menfellowship.jpg",
+      icon: <FiHeart className="w-6 h-6" />,
+      href: "/mens-fellowship"
+    },
+    {
+      id: 5,
+      title: "Women's Fellowship",
+      description: "A supportive community where women grow in faith, build relationships, and serve together.",
+      image: "/images/clergy/Bishop-Veliane-6.jpeg",
       icon: <FiHeart className="w-6 h-6" />,
       href: "/womens-fellowship"
     },
     {
-        id: 5,
+      id: 6,
+      title: "Children's Fellowship",
+      description: "Nurturing the faith of our youngest members through age-appropriate Bible studies and activities.",
+      image: "/images/clergy/wovenu.jpg",
+      icon: <FiUsers className="w-6 h-6" />,
+      href: "/childrens-fellowship"
+    },
+    {
+        id: 7,
         title: "Usher's Ministry",
         description: "Creating a welcoming environment for all who enter our doors, ensuring a smooth and orderly worship experience.",
         image: "/images/groups/ushers1.jpeg", 
@@ -56,10 +72,10 @@ const Groups: React.FC = () => {
         href: "/ushers-ministry"
       },
       {
-        id: 6,
+        id: 8,
         title: "WMC Media Team",
         description: "Capturing and sharing the moments of our church life through photography, videography, and social media.",
-        image: "/images/groups/mediateam.jpeg",
+        image: "/images/clergy/reubenopata.jpg",
         icon: <FiCamera className="w-6 h-6" />,
         href: "/wmc-media-team"
       }
