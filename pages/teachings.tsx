@@ -82,7 +82,7 @@ const TeachingsPage: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Teachings - Apostles Revelations Society</title>
+        <title>Teachings - Apostles Revelation Society</title>
         <meta name="description" content="Explore our collection of biblical teachings, Bible studies, and spiritual resources. Grow in your faith through our comprehensive teaching ministry." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

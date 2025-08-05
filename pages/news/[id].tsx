@@ -27,7 +27,7 @@ const NewsArticlePage: React.FC = () => {
     content: `
       <p class="mb-6">The 67th Anniversary of the ARS Women's Council at the Abelemkpe Branch was a momentous occasion that brought together generations of faithful women who have dedicated their lives to serving God and their community.</p>
       
-      <p class="mb-6">The celebration, held on July 25th, 2025, marked decades of dedicated service, spiritual growth, and community leadership. The event was attended by hundreds of women from various branches, all coming together to commemorate this significant milestone in the history of the Apostles Revelations Society.</p>
+      <p class="mb-6">The celebration, held on July 25th, 2025, marked decades of dedicated service, spiritual growth, and community leadership. The event was attended by hundreds of women from various branches, all coming together to commemorate this significant milestone in the history of the Apostles Revelation Society.</p>
       
       <p class="mb-6">The day began with a special morning prayer service, followed by a series of inspiring testimonies from long-standing members who shared their experiences of faith, perseverance, and the transformative power of God's love in their lives.</p>
       
@@ -75,7 +75,7 @@ const NewsArticlePage: React.FC = () => {
   return (
     <>
       <Head>
-        <title>{article.title} - Apostles Revelations Society</title>
+        <title>{article.title} - Apostles Revelation Society</title>
         <meta name="description" content="Celebrating the 67th Anniversary of the ARS Women's Council at the Abelemkpe Branch. A momentous occasion marking decades of dedicated service." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

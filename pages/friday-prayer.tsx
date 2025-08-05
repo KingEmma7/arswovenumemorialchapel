@@ -52,7 +52,7 @@ const FridayPrayerPage: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Friday Prayer Service - Apostles Revelations Society</title>
+        <title>Friday Prayer Service - Apostles Revelation Society</title>
         <meta name="description" content="Join us every Friday at 6:00 PM for our Prayer Service, where we gather to pray for our church, community, and world." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

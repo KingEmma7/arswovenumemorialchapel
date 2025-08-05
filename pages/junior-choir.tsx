@@ -52,7 +52,7 @@ const JuniorChoirPage: React.FC = () => {
           animate={{ opacity: 1, transition: { duration: 1 } }}
         >
           <Image
-            src="/images/groups/juniorchoir.jpg"
+            src="/images/groups/juniorchoir-leaders.jpeg"
             alt="Junior Choir singing"
             fill
             className="object-cover object-center"
@@ -96,7 +96,7 @@ const JuniorChoirPage: React.FC = () => {
                 viewport={{ once: true }}
               >
                 <Image
-                  src="/images/groups/juniorchoir.jpg"
+                  src="/images/groups/juniorchoir2.jpeg"
                   alt="Junior Choir in performance"
                   width={600}
                   height={400}
@@ -124,6 +124,53 @@ const JuniorChoirPage: React.FC = () => {
                   <div className="flex justify-center mb-4">{feature.icon}</div>
                   <h3 className="text-2xl font-bold text-navy-800 mb-3">{feature.title}</h3>
                   <p className="text-gray-600">{feature.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Gallery Section */}
+        <section className="section-padding bg-gray-50">
+          <div className="container-width">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-4xl font-bold text-navy-900 mb-4">Junior Choir Gallery</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Capturing the joy, energy, and beautiful moments of our young worship leaders in action.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                { src: '/images/groups/juniorchoir2.jpeg', alt: 'Junior Choir performing' },
+                { src: '/images/groups/juniorchoir99.jpeg', alt: 'Junior Choir members' },
+                { src: '/images/groups/juniorchoir-leaders.jpeg', alt: 'Junior Choir leaders' },
+                { src: '/images/groups/junior-choir77.jpeg', alt: 'Junior Choir in practice' },
+                { src: '/images/groups/juniorchoir-chelsea.jpeg', alt: 'Junior Choir Chelsea' },
+                { src: '/images/groups/juniorchoir.jpg', alt: 'Junior Choir group photo' }
+              ].map((image, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={400}
+                    height={300}
+                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300" />
                 </motion.div>
               ))}
             </div>

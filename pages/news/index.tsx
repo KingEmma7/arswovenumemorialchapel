@@ -32,13 +32,13 @@ const NewsPage: React.FC = () => {
     },
     {
       id: 2,
-      title: "WMC Annual Harvest Service",
-      excerpt: "Our Annual Harvest Service is a time of celebration and renewal, as we gather to give thanks for the blessings of the harvest and to seek God's guidance for the future.",
-      author: "Harvest Ministry",
-      date: "July 20th, 2025",
-      readTime: "3 min read",
-      image: "/images/clergy/wovenu.png",
-      category: "Youth"
+      title: "Annual Harvest Celebration 2025",
+      excerpt: "A joyous celebration of God's blessings through singing, community parading, and auctioning produce to raise funds for the church. Experience the unity and thanksgiving of our harvest tradition.",
+      author: "Harvest Ministry Team",
+      date: "October 5th, 2025",
+      readTime: "5 min read",
+      image: "/images/news/harvest1.jpeg",
+      category: "Events"
     },
     {
       id: 3,
@@ -108,7 +108,7 @@ const NewsPage: React.FC = () => {
   return (
     <>
       <Head>
-        <title>WMC News - Apostles Revelations Society</title>
+        <title>WMC News - Apostles Revelation Society</title>
         <meta name="description" content="Stay updated with the latest news, events, and announcements from Wovenu Memorial Chapel. Read about our ministries, community services, and spiritual growth opportunities." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -220,10 +220,10 @@ const NewsPage: React.FC = () => {
                     </div>
                     
                     <Link
-                      href={post.id === 1 ? `/news/${post.id}` : `/news/${post.id}`}
+                      href={post.id === 2 ? '/news/harvest-2025' : `/news/${post.id}`}
                       className="inline-flex items-center text-church-red hover:text-red-800 font-semibold transition-colors duration-200"
                     >
-                      {post.id === 1 ? 'Read Full Article' : 'Read More'}
+                      {post.id === 2 ? 'Read Full Article' : 'Read More'}
                       <FiArrowRight className="ml-2 w-4 h-4" />
                     </Link>
                   </div>

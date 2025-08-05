@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { getEntryForDate } from '@/lib/pocketCalendar2025';
+import { fetchVerse, formatVerseWithSuperscripts } from '@/lib/bibleApi';
 
 import { 
   FiMapPin, 
@@ -15,6 +17,37 @@ import {
 } from 'react-icons/fi';
 
 const Footer: React.FC = () => {
+  const [todayVerse, setTodayVerse] = useState<string>('');
+  const [todayReference, setTodayReference] = useState<string>('John 13:35');
+
+  useEffect(() => {
+    const loadTodayVerse = async () => {
+      const today = new Date();
+      const entry = getEntryForDate(today);
+      
+      if (entry && entry.references.length > 0) {
+        try {
+          const verseText = await fetchVerse(entry.references[0], 'eng');
+          const formattedVerse = formatVerseWithSuperscripts(verseText);
+          setTodayVerse(formattedVerse);
+          setTodayReference(entry.references[0]);
+        } catch (error) {
+          console.error('Error loading footer verse:', error);
+          const fallbackVerse = formatVerseWithSuperscripts('By this everyone will know that you are my disciples, if you love one another.');
+          setTodayVerse(fallbackVerse);
+          setTodayReference('John 13:35');
+        }
+      } else {
+        // If no entry found for today, show a default encouraging verse
+        const fallbackVerse = formatVerseWithSuperscripts('By this everyone will know that you are my disciples, if you love one another.');
+        setTodayVerse(fallbackVerse);
+        setTodayReference('John 13:35');
+      }
+    };
+
+    loadTodayVerse();
+  }, []);
+
   const quickLinks = [
     { name: 'About Us', href: '/about' },
     { name: 'Sabbath Service', href: '/sabbath-service' },
@@ -58,7 +91,7 @@ const Footer: React.FC = () => {
               <div className="flex items-center space-x-2">
                 <FiHome className="h-8 w-8 text-gold-500" />
                 <div>
-                  <div className="font-bold text-lg">Apostles Revelations Society</div>
+                  <div className="font-bold text-lg">Apostles Revelation Society</div>
                   <div className="text-sm text-gray-300">Wovenu Memorial Chapel</div>
                 </div>
               </div>
@@ -77,7 +110,7 @@ const Footer: React.FC = () => {
                 
                 <div className="flex items-center space-x-3">
                   <FiPhone className="w-5 h-5 text-gold-500" />
-                  <span className="text-gray-300">+233 24 423 0000</span>
+                  <span className="text-gray-300">+233 24 345 1929</span>
                 </div>
                 
                 <div className="flex items-center space-x-3">
@@ -146,7 +179,7 @@ const Footer: React.FC = () => {
                     <FiClock className="w-5 h-5 text-gold-500" />
                     <div>
                       <p className="font-semibold">Sabbath Service</p>
-                      <p className="text-gray-300 text-sm">Saturday 10:00 AM</p>
+                      <p className="text-gray-300 text-sm">Sunday 9:00 AM</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
@@ -194,7 +227,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-center md:text-left">
               <p className="text-gray-300">
-                © 2024 Apostles Revelations Society - Wovenu Memorial Chapel. All rights reserved.
+                {new Date().getFullYear()} Apostles Revelation Society - Wovenu Memorial Chapel. All rights reserved.
               </p>
             </div>
             
@@ -215,10 +248,11 @@ const Footer: React.FC = () => {
             viewport={{ once: true }}
             className="text-center mt-6 pt-6 border-t border-navy-700"
           >
-            <p className="text-gold-400 font-semibold italic">
-              "By this everyone will know that you are my disciples, if you love one another."
-            </p>
-            <p className="text-gray-400 text-sm mt-2">John 13:35</p>
+            <p 
+              className="text-gold-400 font-semibold italic font-sans"
+              dangerouslySetInnerHTML={{ __html: `"${'By this everyone will know that you are my disciples, if you love one another.'}"` }}
+            />
+            <p className="text-gray-400 text-sm mt-2">{ 'John 13:35'}</p>
           </motion.div>
         </div>
       </motion.div>

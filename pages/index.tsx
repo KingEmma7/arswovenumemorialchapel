@@ -9,21 +9,22 @@ import Hero from "@/components/Hero";
 import Ministries from "@/components/Ministries";
 import News from "@/components/News";
 import Sermons from "@/components/Sermons";
+import VerseOfTheDay from "@/components/VerseOfTheDay";
 import Footer from "@/components/Footer";
 
 const Home: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Apostles Revelations Society - Wovenu Memorial Chapel</title>
+        <title>Apostles Revelation Society - Wovenu Memorial Chapel</title>
         <meta
           name="description"
-          content="Come worship with us and let God meet you where you are at. Apostles Revelations Society exists to show our city the love of God through gospel-focused worship and bold community service."
+          content="Come worship with us and let God meet you where you are at. Apostles Revelation Society exists to show our city the love of God through gospel-focused worship and bold community service."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           property="og:title"
-          content="Apostles Revelations Society - Wovenu Memorial Chapel"
+          content="Apostles Revelation Society - Wovenu Memorial Chapel"
         />
         <meta
           property="og:description"
@@ -48,43 +49,8 @@ const Home: React.FC = () => {
           {/* Hero Section */}
           <Hero />
 
-          {/* Church Mission Statement */}
-          <motion.section
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="section-padding bg-white"
-          >
-            <div className="container-width text-center">
-              <div className="max-w-4xl mx-auto">
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  viewport={{ once: true }}
-                  className="text-2xl md:text-3xl text-navy-900 font-serif leading-relaxed italic"
-                >
-                  "Apostles Revelations Society exists to show our nation and
-                  the world the love of God through His Commandments and
-                  Holiness."
-                </motion.p>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  viewport={{ once: true }}
-                  className="mt-8 text-center"
-                >
-                  <p className="text-lg text-gray-600 mb-6">
-                    By this everyone will know that you are my disciples, if you
-                    love one another.
-                  </p>
-                  <p className="text-gold-600 font-semibold">John 13:35</p>
-                </motion.div>
-              </div>
-            </div>
-          </motion.section>
+          {/* Verse of the Day Section */}
+          <VerseOfTheDay />
 
           {/* News Section */}
           <News />
@@ -95,7 +61,7 @@ const Home: React.FC = () => {
           {/* Sermons Section */}
           <Sermons />
 
-                    {/* Visitors and Members Section */}
+          {/* Visitors and Members Section */}
                     <section className="section-padding bg-gradient-to-br from-primary-50 to-gold-50">
             <div className="container-width">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

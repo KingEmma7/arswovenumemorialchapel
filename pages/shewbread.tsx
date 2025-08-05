@@ -43,7 +43,7 @@ const ShewBreadPage: React.FC = () => {
   return (
     <>
       <Head>
-        <title>ShewBread - Apostles Revelations Society</title>
+        <title>ShewBread - Apostles Revelation Society</title>
         <meta name="description" content="Join us for ShewBread, our quarterly communion service. A time of holy preparation, fellowship, and remembrance of Christ's sacrifice." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

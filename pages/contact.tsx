@@ -72,28 +72,19 @@ const ContactPage: React.FC = () => {
         "info@wmc.org",
         "prayer@wmc.org"
       ]
-    },
-    {
-      icon: <FiClock className="w-6 h-6" />,
-      title: "Office Hours",
-      details: [
-        "Monday - Friday: 8:00 AM - 5:00 PM",
-        "Saturday: 8:00 AM - 12:00 PM",
-        "Sunday: Closed"
-      ]
     }
   ];
 
   const serviceTimes = [
     { day: "Sunday", time: "9:00 AM", service: "Sabbath Service" },
     { day: "Wednesday", time: "7:00 PM", service: "Wednesday Teachings" },
-    { day: "Friday", time: "6:00 PM", service: "Friday Prayer Service" }
+    { day: "Friday", time: "7:00 PM", service: "Friday Prayer Service" }
   ];
 
   return (
     <>
       <Head>
-        <title>Contact Us - Apostles Revelations Society</title>
+        <title>Contact Us - Apostles Revelation Society</title>
         <meta name="description" content="Get in touch with Wovenu Memorial Chapel. Contact us for prayer requests, general inquiries, or to learn more about our services and ministry." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

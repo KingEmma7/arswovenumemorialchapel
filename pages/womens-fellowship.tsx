@@ -53,7 +53,7 @@ const WomensFellowshipPage: React.FC = () => {
           transition={{ duration: 1 }}
         >
           <Image
-            src="/images/groups/womens-fellow.jpeg"
+            src="/images/groups/womencouncil9.jpeg"
             alt="Women's Fellowship"
             fill
             className="object-cover object-center"

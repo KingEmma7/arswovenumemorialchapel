@@ -9,7 +9,7 @@ const GroupsPage: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Church Groups - Apostles Revelations Society</title>
+        <title>Church Groups - Apostles Revelation Society</title>
         <meta name="description" content="Join one of our fellowship groups to grow in faith, build relationships, and serve together in community. Explore our various groups and find where you belong." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

@@ -43,7 +43,7 @@ const SabbathServicePage: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Sabbath Service - Apostles Revelations Society</title>
+        <title>Sabbath Service - Apostles Revelation Society</title>
         <meta name="description" content="Join us every Sunday at 9:00 AM for our main Sabbath Service. Experience worship, teaching, and fellowship in a welcoming community." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

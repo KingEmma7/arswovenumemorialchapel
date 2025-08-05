@@ -61,7 +61,7 @@ const BrassBandPage: React.FC = () => {
           animate={{ opacity: 1, transition: { duration: 1 } }}
         >
           <Image
-            src="/images/groups/brassband78.jpeg"
+            src="/images/groups/brassband5.jpeg"
             alt="Brass Band in full regalia"
             fill
             className="object-cover object-center"

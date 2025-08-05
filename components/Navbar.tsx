@@ -92,7 +92,7 @@ const Navbar: React.FC = () => {
               <Image src="/images/arslogo.png" alt="ARS logo" width={100} height={100} />
             </motion.div>
             <div className="text-white">
-              <div className="font-bold text-lg">Apostles Revelations Society</div>
+              <div className="font-bold text-lg">Apostles Revelation Society</div>
               <div className="text-sm text-gray-300 uppercase font-bold">Wovenu Memorial Chapel</div>
             </div>
           </Link>

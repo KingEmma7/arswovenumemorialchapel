@@ -15,7 +15,7 @@ interface ClergyMember {
   email?: string;
   phone?: string;
   location?: string;
-  category: 'bishop' | 'deacon' | 'deaconess';
+  category: 'bishop' | 'elder' | 'deaconess';
   order: number;
 }
 
@@ -36,49 +36,49 @@ const ClergyPage: React.FC = () => {
     {
       id: 2,
       name: "Bishop Sinametor Wovenu Tagbor",
-      title: "Regional Bishop",
+      title: "Bishop",
       description: "Supporting the Presiding Bishop in pastoral care and administrative duties. Bishop Williams specializes in youth ministry and community outreach programs.",
-      image: "/images/clergy/assistant-bishop.jpg",
-      email: "bishop.williams@wmc.org",
+      image: "/images/clergy/bishop-sina.jpeg",
+      email: "bishop.sinametor@wmc.org",
       phone: "+233 24 987 6543",
-      location: "Kumasi, Ghana",
+      location: "Accra, Ghana",
       category: "bishop",
       order: 2
     },
     {
       id: 3,
       name: "Bishop Sedenkor Wovenu",
-      title: "Assistant Bishop",
+      title: "Bishop",
       description: "Overseeing church operations in the northern region and providing spiritual guidance to multiple congregations.",
       image: "/images/clergy/regional-bishop.jpg",
-      email: "bishop.asante@wmc.org",
+      email: "bishop.sedenkor@wmc.org",
       phone: "+233 26 456 7890",
-      location: "Tamale, Ghana",
+      location: "Accra, Ghana",
       category: "bishop",
       order: 3
     },
     {
       id: 4,
       name: "Elder Hope Goka",
-      title: "Deacon",
-      description: "Leading our deacon ministry and serving the congregation through practical service and spiritual support.",
+      title: "Elder",
+      description: "Leading our elder ministry and serving the congregation through practical service and spiritual support.",
       image: "/images/clergy/elder-hope.jpeg",
-      email: "deacon.osei@wmc.org",
-      phone: "+233 27 111 2222",
+      email: "hope.goka@wmc.org",
+      phone: "+233 24 460 1628",
       location: "Accra, Ghana",
-      category: "deacon",
+      category: "elder",
       order: 1
     },
     {
       id: 5,
       name: "Elder Reuben Opata",
-      title: "Deacon",
+      title: "Elder",
       description: "Supporting church services and providing assistance to families in need within our community.",
-      image: "/images/clergy/reubenopata.jpg",
-      email: "deacon.addo@wmc.org",
+      image: "/images/clergy/reuben-opata.jpg",
+      email: "reuben.opata@wmc.org",
       phone: "+233 28 333 4444",
       location: "Accra, Ghana",
-      category: "deacon",
+      category: "elder",
       order: 2
     },
     {
@@ -87,7 +87,7 @@ const ClergyPage: React.FC = () => {
       title: "Senior Deaconess",
       description: "Leading our women's ministry and providing pastoral care to women and families in our congregation.",
       image: "/images/clergy/senior-deaconess.jpg",
-      email: "deaconess.mensah@wmc.org",
+      email: "deaconess.esi@wmc.org",
       phone: "+233 29 555 6666",
       location: "Accra, Ghana",
       category: "deaconess",
@@ -98,17 +98,29 @@ const ClergyPage: React.FC = () => {
       name: "Deaconess Dadia",
       title: "Deaconess",
       description: "Supporting women's fellowship activities and providing spiritual guidance to young women.",
-      image: "/images/clergy/deaconess.jpg",
-      email: "deaconess.adjei@wmc.org",
+      image: "/images/clergy/dadia.jpeg",
+      email: "deaconess.dadia@wmc.org",
       phone: "+233 30 777 8888",
       location: "Accra, Ghana",
       category: "deaconess",
+      order: 2
+    },
+    {
+      id: 8,
+      name: "Elder Bernadin Senadza (Prof.)",
+      title: "Elder",
+      description: "Supporting women's fellowship activities and providing spiritual guidance to young women.",
+      image: "/images/clergy/prof-senadza.jpeg",
+      email: "bernardin.senadza@wmc.org",
+      phone: "+233 30 777 8888",
+      location: "Accra, Ghana",
+      category: "elder",
       order: 2
     }
   ];
 
   const bishops = clergyMembers.filter(member => member.category === 'bishop');
-  const deacons = clergyMembers.filter(member => member.category === 'deacon');
+  const elders = clergyMembers.filter(member => member.category === 'elder');
   const deaconesses = clergyMembers.filter(member => member.category === 'deaconess');
 
   const containerVariants = {
@@ -135,7 +147,7 @@ const ClergyPage: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Clergy & Leadership - Apostles Revelations Society</title>
+        <title>Clergy & Leadership - Apostles Revelation Society</title>
         <meta name="description" content="Meet our spiritual leaders including the Presiding Bishop, Assistant Bishops, Deacons, and Deaconesses who serve our congregation with dedication and faith." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -280,7 +292,7 @@ const ClergyPage: React.FC = () => {
                   whileHover={{ y: -10 }}
                   className="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
                 >
-                  <div className="relative h-48">
+                  <div className="relative h-64">
                     <Image
                       src={bishop.image}
                       alt={bishop.name}
@@ -325,7 +337,7 @@ const ClergyPage: React.FC = () => {
           </div>
         </section>
 
-        {/* Deacons */}
+        {/* Elders */}
         <section className="section-padding">
           <div className="container-width">
             <motion.div
@@ -336,7 +348,7 @@ const ClergyPage: React.FC = () => {
               className="text-center mb-16"
             >
               <h2 className="text-4xl md:text-5xl font-bold text-navy-900 mb-6">
-                Deacons
+                Elders
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Serving our congregation with dedication and practical support
@@ -350,41 +362,41 @@ const ClergyPage: React.FC = () => {
               viewport={{ once: true }}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
-              {deacons.map((deacon) => (
+              {elders.map((elder) => (
                 <motion.div
-                  key={deacon.id}
+                  key={elder.id}
                   variants={cardVariants}
                   whileHover={{ y: -10 }}
                   className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100"
                 >
                   <div className="relative h-64">
                     <Image
-                      src={deacon.image}
-                      alt={deacon.name}
+                      src={elder.image}
+                      alt={elder.name}
                       fill
                       className="object-cover object-top"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-900/50 to-transparent"></div>
                     <div className="absolute top-4 left-4">
                       <span className="bg-primary-600 text-white px-2 py-1 rounded text-sm font-semibold">
-                        {deacon.title}
+                        {elder.title}
                       </span>
                     </div>
                   </div>
                   
                   <div className="p-6">
                     <h3 className="text-lg font-bold text-navy-900 mb-3">
-                      {deacon.name}
+                      {elder.name}
                     </h3>
                     
                     <p className="text-gray-600 mb-4 leading-relaxed text-sm">
-                      {deacon.description}
+                      {elder.description}
                     </p>
                     
-                    {deacon.email && (
+                    {elder.email && (
                       <div className="flex items-center gap-2 text-sm text-gray-500">
                         <FiMail className="w-4 h-4 text-primary-600" />
-                        <span>{deacon.email}</span>
+                        <span>{elder.email}</span>
                       </div>
                     )}
                   </div>

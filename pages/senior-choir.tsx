@@ -52,7 +52,7 @@ const SeniorChoirPage: React.FC = () => {
           animate={{ opacity: 1, transition: { duration: 1 } }}
         >
           <Image
-            src="/images/groups/seniorchoir.jpg"
+            src="/images/groups/seniorchoir88.jpeg"
             alt="Senior Choir ministering"
             fill
             className="object-cover object-top"

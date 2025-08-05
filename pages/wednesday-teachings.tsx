@@ -32,26 +32,26 @@ const WednesdayTeachingsPage: React.FC = () => {
 
   const upcomingTopics = [
     {
-      title: "The Parables of Jesus",
-      description: "Understanding the wisdom and teachings of Jesus through His parables.",
-      date: "January 24, 2024"
+      title: "The Miracles of Prophet Wovenu",
+      description: "Understanding the miracles of Prophet Wovenu and how they relate to our daily lives.",
+      date: "August 13, 2025"
     },
     {
       title: "Walking in the Spirit",
       description: "Learning to live a Spirit-filled life and recognize God's guidance.",
-      date: "January 31, 2024"
+      date: "August 20, 2025"
     },
     {
-      title: "Building Strong Families",
-      description: "Biblical principles for creating healthy, God-centered family relationships.",
-      date: "February 7, 2024"
+      title: "The Power of Prayer",
+      description: "Learning how to pray effectively and the importance of prayer in our lives.",
+      date: "August 27, 2025"
     }
   ];
 
   return (
     <>
       <Head>
-        <title>Wednesday Teachings - Apostles Revelations Society</title>
+        <title>Wednesday Teachings - Apostles Revelation Society</title>
         <meta name="description" content="Join us every Wednesday at 7:00 PM for Wednesday Teachings, led by Elder Hope Goka. Deep dive into God's word through Bible study, discussion, and prayer." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -64,7 +64,7 @@ const WednesdayTeachingsPage: React.FC = () => {
         <section className="pt-24 pb-16 bg-gradient-to-br from-navy-900 to-navy-800 relative overflow-hidden">
           <div className="absolute inset-0">
             <Image
-              src="/images/pages/wednesday-teachings-hero.jpg"
+              src="/images/clergy/wovenu-reading.jpeg"
               alt="Wednesday Teachings"
               fill
               className="object-cover opacity-20"
