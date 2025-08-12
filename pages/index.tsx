@@ -11,6 +11,7 @@ import News from "@/components/News";
 import Sermons from "@/components/Sermons";
 import VerseOfTheDay from "@/components/VerseOfTheDay";
 import Footer from "@/components/Footer";
+import router from "next/router";
 
 const Home: React.FC = () => {
   return (
@@ -86,6 +87,7 @@ const Home: React.FC = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       className="bg-gold-500 hover:bg-gold-600 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-200"
+                      onClick={() => router.push("/contact")}
                     >
                       Plan My Visit
                     </motion.button>

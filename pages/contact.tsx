@@ -132,7 +132,7 @@ const ContactPage: React.FC = () => {
               <h2 className="text-3xl font-bold text-navy-900 mb-6 text-center">
                 Find Us
               </h2>
-              <div className="rounded-lg overflow-hidden shadow-lg w-full">
+              <div className="rounded-lg overflow-hidden shadow-lg w-full md:mx-12 lg:mx-6">
                 <iframe 
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.235851108489!2d-0.2344720239882873!3d5.67900939430259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9ff29808ca89%3A0x2201e5cc8ff14c43!2sA.R.S.%20Musuku%20Branch%20(Wovenu%20Memorial%20Chapel)!5e0!3m2!1sen!2sgh!4v1754272504131!5m2!1sen!2sgh" 
                   width="100%" 

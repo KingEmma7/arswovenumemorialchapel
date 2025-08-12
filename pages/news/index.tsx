@@ -42,12 +42,12 @@ const NewsPage: React.FC = () => {
     },
     {
       id: 3,
-      title: "Community Outreach Program",
-      excerpt: "WMC's commitment to serving our community through various outreach programs and charitable activities.",
-      author: "Community Service Team",
-      date: "July 15th, 2025",
+      title: "WMC Hospital Outreach Donation Program",
+      excerpt: "WMC's commitment to serving our community through hospital donation programs and charitable activities. Demonstrating God's love through practical acts of service.",
+      author: "Community Service Ministry",
+      date: "July 20th, 2025",
       readTime: "4 min read",
-      image: "/images/news/wmc-7.png",
+      image: "/images/news/outreach.jpeg",
       category: "Community Service"
     },
     {
@@ -220,10 +220,14 @@ const NewsPage: React.FC = () => {
                     </div>
                     
                     <Link
-                      href={post.id === 2 ? '/news/harvest-2025' : `/news/${post.id}`}
+                      href={
+                        post.id === 2 ? '/news/harvest-2025' : 
+                        post.id === 3 ? '/news/outreach-donation' : 
+                        `/news/${post.id}`
+                      }
                       className="inline-flex items-center text-church-red hover:text-red-800 font-semibold transition-colors duration-200"
                     >
-                      {post.id === 2 ? 'Read Full Article' : 'Read More'}
+                      {post.id === 2 || post.id === 3 ? 'Read Full Article' : 'Read More'}
                       <FiArrowRight className="ml-2 w-4 h-4" />
                     </Link>
                   </div>

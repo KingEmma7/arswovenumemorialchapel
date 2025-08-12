@@ -17,7 +17,8 @@ const languages = [
 const PocketCalendarPage: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [entry, setEntry] = useState<PocketCalendarEntry | undefined>();
-  const [verses, setVerses] = useState<string>('');
+  const [versesByRef, setVersesByRef] = useState<string[]>([]);
+  const [loadError, setLoadError] = useState<string>('');
   const [lang, setLang] = useState<LangCode>('eng');
   const [loading, setLoading] = useState(false);
   const [translationError, setTranslationError] = useState<string>('');
@@ -31,13 +32,15 @@ const PocketCalendarPage: React.FC = () => {
   // fetch verse when entry or lang changes
   useEffect(() => {
     if (!entry) {
-      setVerses('No scripture available for this date');
+      setVersesByRef([]);
       setTranslationError('');
+      setLoadError('');
       return;
     }
     (async () => {
       setLoading(true);
       setTranslationError('');
+      setLoadError('');
       
       try {
         const results = await Promise.all(
@@ -57,11 +60,12 @@ const PocketCalendarPage: React.FC = () => {
           }
         }
         
-        setVerses(texts.join('\n\n'));
+        setVersesByRef(texts);
       } catch (error) {
         console.error('Error fetching verses:', error);
-        setVerses('Unable to load verses. Please check your internet connection.');
+        setVersesByRef([]);
         setTranslationError('');
+        setLoadError('Unable to load verses. Please check your internet connection.');
       }
       
       setLoading(false);
@@ -100,9 +104,24 @@ const PocketCalendarPage: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="w-20 h-20 bg-gold-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                <FiBookOpen className="w-10 h-10 text-white" />
-              </div>
+              <div className="w-40 h-40 rounded-full flex items-center justify-center mx-auto mb-6">
+              <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{
+                      y: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+                      scale: { duration: 0.2 },
+                    }}
+                  >
+                    <Image
+                      src="/images/clergy/wovenu.png"
+                      alt="Pocket Calendar"
+                      width={64}
+                      height={64}
+                      className="rounded-full"
+                    />
+                  </motion.div>              </div>
               <h1 className="text-5xl md:text-6xl font-bold mb-6">Pocket Calendar</h1>
               <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
                 Daily scripture readings for spiritual growth and reflection. Available in English, Akan, and Ewe.
@@ -196,7 +215,7 @@ const PocketCalendarPage: React.FC = () => {
                 ) : (
                   entry && entry.references.length > 0 ? (
                     <motion.div
-                      key={`${verses}-${lang}`}
+                      key={`${selectedDate.toISOString()}-${lang}-${entry.references.join('|')}`}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5 }}
@@ -209,18 +228,30 @@ const PocketCalendarPage: React.FC = () => {
                         </div>
                       </div>
                       
-                      <blockquote className="text-xl md:text-2xl text-gray-800 leading-relaxed font-sans text-center">
-                        {verses.split('\n\n').map((verse, i) => (
-                          <motion.p 
-                            key={i} 
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: i * 0.2 }}
-                            className="mb-6 last:mb-0"
-                            dangerouslySetInnerHTML={{ __html: `"${verse}"` }}
-                          />
-                        ))}
-                      </blockquote>
+                      {loadError ? (
+                        <p className="text-center text-red-600">{loadError}</p>
+                      ) : (
+                        <div className="space-y-8">
+                          {entry.references.map((ref, idx) => (
+                            <div key={`${ref}-${idx}`}>
+                              <div className="mb-3 flex justify-center">
+                                <span className="inline-flex items-center gap-2 bg-gray-200 text-navy-900 px-3 py-1 rounded-full text-xs font-semibold">
+                                  {expandBookName(ref)}
+                                </span>
+                              </div>
+                              <blockquote className="text-xl md:text-2xl text-gray-800 leading-relaxed font-sans text-center">
+                                <motion.p
+                                  initial={{ opacity: 0 }}
+                                  animate={{ opacity: 1 }}
+                                  transition={{ delay: idx * 0.2 }}
+                                  className="mb-0"
+                                  dangerouslySetInnerHTML={{ __html: versesByRef[idx] ? `"${versesByRef[idx]}"` : '""' }}
+                                />
+                              </blockquote>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                       
                       <div className="text-center mt-8">
                         <p className="text-gray-600 text-sm">

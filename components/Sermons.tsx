@@ -29,8 +29,8 @@ const Sermons: React.FC = () => {
       id: 2,
       title: "Victory in Sanctuary",
       speaker: "Bishop Sinametor Wovenu Tagbor",
-      date: "Jan 08, 2024",
-      image: "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+        date: "Jan 08, 2024",
+        image: "/images/clergy/bishop-sina2.jpeg",
       description: "Understanding God's victory and how it transforms our lives through sanctuary worship.",
       duration: "38 min"
     },

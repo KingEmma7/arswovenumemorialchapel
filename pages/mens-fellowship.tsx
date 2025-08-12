@@ -121,7 +121,7 @@ const MensFellowshipPage: React.FC = () => {
                 viewport={{ once: true }}
               >
                 <Image
-                  src="/images/groups/menfellowship.jpg"
+                  src="/images/clergy/elder5.jpeg"
                   alt="Men's Fellowship members"
                   width={600}
                   height={400}

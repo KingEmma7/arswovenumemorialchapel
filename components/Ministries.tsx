@@ -34,7 +34,7 @@ const Ministries: React.FC = () => {
     {
       id: 3,
       title: "Junior Choir",
-      description: "Nurturing the faith of our youngest members through age-appropriate Bible studies and activities.",
+      description: "A youthful choir that sing passionate music to the glory of God.",
       image: "/images/groups/juniorchoir.jpg",
       icon: <FiUsers className="w-6 h-6" />,
       href: "/childrens-fellowship"
@@ -42,7 +42,7 @@ const Ministries: React.FC = () => {
     {
       id: 4,
       title: "Men's Fellowship",
-      description: "A supportive community where women grow in faith, build relationships, and serve together.",
+      description: "A supportive community where men grow in faith, sing soulful 'borborbor' songs, and serve together.",
       image: "/images/groups/menfellowship.jpg",
       icon: <FiHeart className="w-6 h-6" />,
       href: "/womens-fellowship"

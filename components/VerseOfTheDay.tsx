@@ -1,37 +1,46 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { FiBookOpen, FiArrowRight, FiCalendar } from 'react-icons/fi';
-import { getEntryForDate } from '@/lib/pocketCalendar2025';
-import { fetchVerse, expandBookName, formatVerseWithSuperscripts } from '@/lib/bibleApi';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { FiBookOpen, FiArrowRight, FiCalendar } from "react-icons/fi";
+import { getEntryForDate } from "@/lib/pocketCalendar2025";
+import {
+  fetchVerse,
+  expandBookName,
+  formatVerseWithSuperscripts,
+} from "@/lib/bibleApi";
+import Image from "next/image";
 
 const VerseOfTheDay: React.FC = () => {
-  const [todayVerse, setTodayVerse] = useState<string>('');
-  const [todayReference, setTodayReference] = useState<string>('');
+  const [todayVerse, setTodayVerse] = useState<string>("");
+  const [todayReference, setTodayReference] = useState<string>("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadTodayVerse = async () => {
       const today = new Date();
       const entry = getEntryForDate(today);
-      
+
       if (entry && entry.references.length > 0) {
-                  try {
-            const verseText = await fetchVerse(entry.references[0], 'eng');
-            const formattedVerse = formatVerseWithSuperscripts(verseText);
-            setTodayVerse(formattedVerse);
-            setTodayReference(expandBookName(entry.references[0]));
-          } catch (error) {
-          console.error('Error loading verse:', error);
-          const fallbackVerse = formatVerseWithSuperscripts('For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.');
+        try {
+          const verseText = await fetchVerse(entry.references[0], "eng");
+          const formattedVerse = formatVerseWithSuperscripts(verseText);
+          setTodayVerse(formattedVerse);
+          setTodayReference(expandBookName(entry.references[0]));
+        } catch (error) {
+          console.error("Error loading verse:", error);
+          const fallbackVerse = formatVerseWithSuperscripts(
+            "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."
+          );
           setTodayVerse(fallbackVerse);
-          setTodayReference('John 3:16');
+          setTodayReference("John 3:16");
         }
       } else {
         // If no entry found for today, show a default encouraging verse
-        const fallbackVerse = formatVerseWithSuperscripts('For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.');
+        const fallbackVerse = formatVerseWithSuperscripts(
+          "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."
+        );
         setTodayVerse(fallbackVerse);
-        setTodayReference('John 3:16');
+        setTodayReference("John 3:16");
       }
       setLoading(false);
     };
@@ -66,7 +75,7 @@ const VerseOfTheDay: React.FC = () => {
             <FiBookOpen className="w-5 h-5" />
             <span className="font-semibold">Verse of the Day</span>
           </motion.div>
-          
+
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -99,11 +108,13 @@ const VerseOfTheDay: React.FC = () => {
                       <FiBookOpen className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <p className="text-gold-600 font-semibold">{todayReference}</p>
+                      <p className="text-gold-600 font-semibold">
+                        {todayReference}
+                      </p>
                       <p className="text-gray-500 text-sm">Today's Reading</p>
                     </div>
                   </div>
-                  
+
                   <motion.blockquote
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -112,7 +123,7 @@ const VerseOfTheDay: React.FC = () => {
                     className="text-xl text-gray-600 leading-relaxed font-normal text-center"
                     dangerouslySetInnerHTML={{ __html: `"${todayVerse}"` }}
                   />
-                  
+
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -121,7 +132,8 @@ const VerseOfTheDay: React.FC = () => {
                     className="mt-6 pt-6 border-t border-gray-200"
                   >
                     <p className="text-gray-600">
-                      Start your day with God's word and find strength for your journey.
+                      Start your day with God's word and find strength for your
+                      journey.
                     </p>
                   </motion.div>
                 </>
@@ -145,19 +157,34 @@ const VerseOfTheDay: React.FC = () => {
                 viewport={{ once: true }}
                 className="text-center"
               >
-                <div className="w-16 h-16 bg-gold-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <FiCalendar className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{
+                      y: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+                      scale: { duration: 0.2 },
+                    }}
+                  >
+                    <Image
+                      src="/images/clergy/wovenu.png"
+                      alt="Pocket Calendar"
+                      width={64}
+                      height={64}
+                      className="rounded-full"
+                    />
+                  </motion.div>
                 </div>
-                
-                <h3 className="text-3xl font-bold mb-4">
-                  Pocket Calendar
-                </h3>
-                
+
+                <h3 className="text-3xl font-bold mb-4">Pocket Calendar</h3>
+
                 <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                  Access daily scripture readings for the entire year. Navigate through dates, 
-                  switch between English, Akan, and Ewe translations, and deepen your spiritual journey.
+                  Access daily scripture readings for the entire year. Navigate
+                  through dates, switch between English, Akan, and Ewe
+                  translations, and deepen your spiritual journey.
                 </p>
-                
+
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -184,4 +211,4 @@ const VerseOfTheDay: React.FC = () => {
   );
 };
 
-export default VerseOfTheDay; 
+export default VerseOfTheDay;

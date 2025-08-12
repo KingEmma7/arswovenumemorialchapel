@@ -92,13 +92,14 @@ const Navbar: React.FC = () => {
               <Image src="/images/arslogo.png" alt="ARS logo" width={100} height={100} />
             </motion.div>
             <div className="text-white">
+              <div className="text-xs text-gray-300">Church of</div>
               <div className="font-bold text-lg">Apostles Revelation Society</div>
               <div className="text-sm text-gray-300 uppercase font-bold">Wovenu Memorial Chapel</div>
             </div>
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8 uppercase">
             {menuItems.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -111,7 +112,7 @@ const Navbar: React.FC = () => {
               >
                 {item.submenu ? (
                   <div className="flex items-center space-x-1 cursor-pointer">
-                    <span className="text-white hover:text-gold-500 transition-colors duration-200 font-medium">
+                    <span className="text-white hover:text-gold-500 transition-colors duration-200 font-medium text-uppercase">
                       {item.name}
                     </span>
                     <FiChevronDown className={`w-4 h-4 text-white transition-transform duration-200 ${
@@ -121,7 +122,7 @@ const Navbar: React.FC = () => {
                 ) : (
                   <Link
                     href={item.href}
-                    className="text-white hover:text-gold-500 transition-colors duration-200 font-medium"
+                    className="text-white hover:text-gold-500 transition-colors duration-200 font-medium text-uppercase"
                   >
                     {item.name}
                   </Link>
@@ -133,7 +134,7 @@ const Navbar: React.FC = () => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="absolute top-full left-0 mt-2 w-48 bg-navy-800 rounded-lg shadow-xl z-50"
+                    className="absolute top-full left-0 mt-2 w-48 bg-navy-800 rounded-lg shadow-xl z-50 text-uppercase"
                     onMouseEnter={() => handleMouseEnter(item.name)}
                     onMouseLeave={handleMouseLeave}
                   >
@@ -142,7 +143,7 @@ const Navbar: React.FC = () => {
                         <Link
                           key={subItem.name}
                           href={subItem.href}
-                          className="block px-4 py-2 text-white hover:bg-navy-700 hover:text-gold-500 transition-colors duration-200"
+                          className="block px-4 py-2 text-white hover:bg-navy-700 hover:text-gold-500 transition-colors duration-200 text-uppercase"
                         >
                           {subItem.name}
                         </Link>
@@ -186,7 +187,7 @@ const Navbar: React.FC = () => {
                       <div>
                         <button
                           onClick={() => toggleDropdown(item.name)}
-                          className="w-full flex items-center justify-between px-4 py-3 text-white hover:bg-navy-700 hover:text-gold-500 transition-colors duration-200"
+                          className="w-full flex items-center justify-between px-4 py-3 text-white hover:bg-navy-700 hover:text-gold-500 transition-colors duration-200 text-uppercase"
                         >
                           <span>{item.name}</span>
                           <FiChevronDown className={`w-4 h-4 transition-transform duration-200 ${
@@ -204,7 +205,7 @@ const Navbar: React.FC = () => {
                               <Link
                                 key={subItem.name}
                                 href={subItem.href}
-                                className="block px-8 py-2 text-white hover:bg-navy-600 hover:text-gold-500 transition-colors duration-200"
+                                className="block px-8 py-2 text-white hover:bg-navy-600 hover:text-gold-500 transition-colors duration-200 text-uppercase"
                                 onClick={() => setIsOpen(false)}
                               >
                                 {subItem.name}
@@ -216,7 +217,7 @@ const Navbar: React.FC = () => {
                     ) : (
                       <Link
                         href={item.href}
-                        className="block px-4 py-3 text-white hover:bg-navy-700 hover:text-gold-500 transition-colors duration-200"
+                        className="block px-4 py-3 text-white hover:bg-navy-700 hover:text-gold-500 transition-colors duration-200 text-uppercase"
                         onClick={() => setIsOpen(false)}
                       >
                         {item.name}

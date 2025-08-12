@@ -91,6 +91,7 @@ const Footer: React.FC = () => {
               <div className="flex items-center space-x-2">
                 <FiHome className="h-8 w-8 text-gold-500" />
                 <div>
+                  <div className="text-xs text-gray-300">Church of</div>
                   <div className="font-bold text-lg">Apostles Revelation Society</div>
                   <div className="text-sm text-gray-300">Wovenu Memorial Chapel</div>
                 </div>
@@ -227,7 +228,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-center md:text-left">
               <p className="text-gray-300">
-                {new Date().getFullYear()} Apostles Revelation Society - Wovenu Memorial Chapel. All rights reserved.
+               &copy; {new Date().getFullYear()} Apostles Revelation Society - Wovenu Memorial Chapel. All rights reserved.
               </p>
             </div>
             

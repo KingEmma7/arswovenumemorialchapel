@@ -56,18 +56,18 @@ const WomensFellowshipPage: React.FC = () => {
             src="/images/groups/womencouncil9.jpeg"
             alt="Women's Fellowship"
             fill
-            className="object-cover object-center"
+            className="object-cover object-center "
             priority
           />
           {/* Removed overlay here */}
-          <div className="relative z-10 flex h-full items-center justify-center text-center p-4">
+          <div className="relative z-10 flex h-full items-center justify-center text-center p-4 mt-10">
             <motion.div
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.3, type: 'spring', stiffness: 120 }}
               className="bg-black bg-opacity-50 p-6 rounded-lg shadow-lg backdrop-blur-sm"
             >
-              <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight">
+              <h1 className="text-3xl md:text-7xl font-bold text-white mb-3 tracking-tight ">
                 Women's Fellowship
               </h1>
               <p className="text-xl md:text-2xl text-gold-200 max-w-3xl mx-auto">
@@ -143,11 +143,11 @@ const WomensFellowshipPage: React.FC = () => {
                 viewport={{ once: true }}
               >
                 <Image
-                  src="/images/clergy/Bishop-Veliane-6.jpeg"
+                  src="/images/clergy/grandma.png"
                   alt="Women's Fellowship activities"
                   width={600}
                   height={400}
-                  className="rounded-xl shadow-2xl"
+                  className="rounded-xl shadow-2xl object-cover object-bottom"
                 />
               </motion.div>
             </div>

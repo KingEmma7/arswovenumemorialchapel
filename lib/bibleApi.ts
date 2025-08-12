@@ -51,30 +51,30 @@ export function expandBookName(reference: string): string {
 // Function to format verse text with superscript verse numbers and fix spacing
 export function formatVerseWithSuperscripts(verseText: string): string {
   let formatted = verseText;
-  
-  // First, clean up any HTML tags from the API response
+
+  // Strip all HTML tags from the API response to avoid unsafe markup
+  // We intentionally remove existing <sup> from providers and rebuild consistently
   formatted = formatted.replace(/<[^>]*>/g, '');
-  
-  // Fix spacing issues after punctuation
+
+  // Normalize spacing around punctuation
   formatted = formatted
-    // Add space after punctuation if missing
     .replace(/([.!?,:;])([A-Za-zÀ-ÿĀ-žА-я])/g, '$1 $2')
-    // Fix multiple spaces
     .replace(/\s+/g, ' ');
-  
-  // Handle verse numbers - use global flag to catch ALL occurrences
-  // This pattern matches numbers at start of string or after space/punctuation
-  formatted = formatted.replace(/(^|[\s.!?,:;])(\d{1,3})(?=[\s.!?,:;À-ÿĀ-žА-яA-Za-z]|$)/g, (match, before, number) => {
-    const num = parseInt(number);
-    // Only convert to superscript if it looks like a verse number (1-999)
-    if (num >= 1 && num <= 999) {
-      // Add proper spacing before the superscript if needed
-      const spaceBefore = before === '^' || before === '' ? '' : before;
-      return `${spaceBefore}<sup class="text-xs font-medium text-gray-500 mr-1">${number}</sup>`;
+
+  // Superscript verse numbers, including numbers after quotes or other punctuation
+  // - Allow start of string OR any Unicode punctuation/space before the number
+  // - Limit to 1-3 digits to avoid catching years etc.
+  // - Use the Unicode flag so \p{P} matches all punctuation (e.g., “ ” ‘ ’ — …)
+  const verseNumberRegex = /(^|[\s\p{P}])(\d{1,3})(?=$|[\s\p{P}]|[A-Za-zÀ-ÿĀ-žА-я])/gu;
+  formatted = formatted.replace(verseNumberRegex, (match, before, number) => {
+    const numeric = Number(number);
+    if (Number.isFinite(numeric) && numeric >= 1 && numeric <= 999) {
+      const prefix = before ?? '';
+      return `${prefix}<sup class="text-xs font-medium text-gray-500 mr-1">${number}</sup>`;
     }
     return match;
   });
-  
+
   return formatted.trim();
 }
 
@@ -120,8 +120,23 @@ export async function fetchVerseWithInfo(reference: string, lang: LangCode): Pro
         
         if (res.ok) {
           const data = await res.json();
+          // Prefer structured verses to inject verse numbers for English
+          if (Array.isArray(data.verses) && data.verses.length > 0) {
+            try {
+              const combined = data.verses
+                .map((v: any) => `${String(v.verse)} ${String(v.text || '').trim()}`)
+                .join(' ')
+                .trim();
+              if (combined) {
+                cache.set(key, combined);
+                return { text: combined, isTranslated: true };
+              }
+            } catch (_) {
+              // Fall through to data.text handler
+            }
+          }
           if (data.text) {
-            const text = data.text.trim();
+            const text = String(data.text).trim();
             cache.set(key, text);
             return { text, isTranslated: true };
           }
@@ -159,7 +174,15 @@ export async function fetchVerseWithInfo(reference: string, lang: LangCode): Pro
       console.log('API Response data:', data);
       
       if (data.data && data.data.content) {
-        const text = data.data.content.replace(/<[^>]*>/g, '').trim();
+        // Try to preserve verse numbers from HTML before stripping tags
+        const rawHtml: string = String(data.data.content);
+        let htmlWithPlainNumbers = rawHtml
+          // common api.bible patterns
+          .replace(/<sup[^>]*>(\d{1,3})<\/sup>/g, ' $1 ')
+          .replace(/<span[^>]*class=["'][^"']*verse[^"']*["'][^>]*>(\d{1,3})<\/span>/gi, ' $1 ')
+          .replace(/<span[^>]*data-verse[^>]*>(\d{1,3})<\/span>/gi, ' $1 ');
+
+        const text = htmlWithPlainNumbers.replace(/<[^>]*>/g, '').trim();
         if (text && text.length > 10) { // Ensure we have actual content
           cache.set(key, text);
           return { text, isTranslated: true };
