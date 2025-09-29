@@ -50,11 +50,11 @@ const Home: React.FC = () => {
           {/* Hero Section */}
           <Hero />
 
-          {/* Verse of the Day Section */}
-          <VerseOfTheDay />
-
           {/* News Section */}
           <News />
+
+          {/* Verse of the Day Section */}
+          <VerseOfTheDay />
 
           {/* Ministries Section */}
           <Ministries />
@@ -63,7 +63,7 @@ const Home: React.FC = () => {
           <Sermons />
 
           {/* Visitors and Members Section */}
-                    <section className="section-padding bg-gradient-to-br from-primary-50 to-gold-50">
+          <section className="section-padding bg-gradient-to-br from-primary-50 to-gold-50">
             <div className="container-width">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 {/* Visitors */}

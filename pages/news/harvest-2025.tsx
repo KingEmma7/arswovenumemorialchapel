@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { FiCalendar, FiUser, FiMapPin, FiUsers, FiMusic, FiHeart } from 'react-icons/fi';
+import { FiCalendar, FiUser, FiMapPin, FiUsers, FiMusic, FiHeart, FiClock } from 'react-icons/fi';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { getHarvestCountdownData, formatCountdownText } from '@/lib/harvestCountdown';
 
 const Harvest2025Page: React.FC = () => {
+  const [harvestData, setHarvestData] = useState(getHarvestCountdownData());
+
+  useEffect(() => {
+    setHarvestData(getHarvestCountdownData());
+  }, []);
+
   const harvestImages = [
     { src: '/images/news/harvest1.jpeg', alt: 'Harvest celebration gathering' },
     { src: '/images/news/harvest2.jpeg', alt: 'Community parade during harvest' },
@@ -55,8 +62,13 @@ const Harvest2025Page: React.FC = () => {
               <h1 className="text-5xl md:text-6xl font-bold mb-6">
                 Annual Harvest Celebration 2025
               </h1>
+
               <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8">
-                A joyous celebration of God's blessings through singing, community parading, and auctioning produce to raise funds for the church.
+                Theme: Celebrating God's Harvest, A Season of Blessings and Thanksgiving
+                </p>
+
+              <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8">
+                {formatCountdownText(harvestData.daysLeft, harvestData.isToday, harvestData.isPast)}
               </p>
               <div className="flex flex-wrap justify-center gap-6 text-sm">
                 <div className="flex items-center gap-2">
@@ -76,6 +88,61 @@ const Harvest2025Page: React.FC = () => {
           </div>
         </section>
 
+        {/* Countdown Poster Section */}
+        <section className="section-padding bg-gradient-to-br from-gold-50 to-primary-50">
+          <div className="container-width">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-navy-900 mb-6">
+                {harvestData.isPast ? 'Thank You for Celebrating!' : 'Mark Your Calendar'}
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                {harvestData.isPast 
+                  ? 'Our Annual Harvest Celebration 2025 was a tremendous success!'
+                  : 'Join us for our Annual Harvest Celebration - a time of worship, community, and thanksgiving.'
+                }
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="max-w-2xl mx-auto"
+            >
+              <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <Image
+                  src={harvestData.image}
+                  alt={harvestData.title}
+                  width={800}
+                  height={600}
+                  className="w-full h-auto"
+                />
+                {!harvestData.isPast && (
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-red-700 text-white px-4 py-2 rounded-full font-bold shadow-lg">
+                      {harvestData.isToday ? 'TODAY!' : `${harvestData.daysLeft} ${harvestData.daysLeft === 1 ? 'Day' : 'Days'} Left`}
+                    </div>
+                  </div>
+                )}
+              </div>
+              
+              <div className="text-center mt-8">
+                <div className="inline-flex items-center gap-3 bg-navy-900 text-white px-6 py-3 rounded-full">
+                  <FiClock className="w-5 h-5" />
+                  <span className="font-semibold">October 5th, 2025 | 9:00 AM</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
         {/* Article Content */}
         <section className="section-padding">
           <div className="container-width max-w-4xl mx-auto">
@@ -89,8 +156,51 @@ const Harvest2025Page: React.FC = () => {
               {/* Introduction */}
               <div className="prose prose-lg max-w-none mb-12">
                 <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                  The Annual Harvest Service at Wovenu Memorial Chapel is one of the most anticipated events of the year, bringing together our entire community in a celebration of God's faithfulness and provision. This year's celebration was particularly special, as we witnessed the power of unity, worship, and community service.
+                  The Annual Harvest Service at Wovenu Memorial Chapel is one of the most anticipated events of the year, bringing together our entire community in a celebration of God's faithfulness and provision. 
+                  {harvestData.isPast 
+                    ? " Our 2025 celebration was particularly special, as we witnessed the power of unity, worship, and community service."
+                    : " Join us on October 5th, 2025, for this special celebration that promises to be filled with worship, community fellowship, and thanksgiving."
+                  }
                 </p>
+              </div>
+
+              {/* Harvest 2025 Info Section */}
+              {!harvestData.isPast && (
+                <div className="mb-12 bg-gradient-to-r from-gold-50 to-primary-50 rounded-2xl p-8">
+                  <h2 className="text-3xl font-bold text-navy-900 mb-6 text-center">What to Expect at Harvest 2025</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="text-center">
+                      <div className="bg-gold-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <FiMusic className="w-8 h-8 text-white" />
+                      </div>
+                      <h3 className="text-xl font-bold text-navy-900 mb-2">Worship & Singing</h3>
+                      <p className="text-gray-600">Experience powerful worship sessions with our choirs and congregation</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="bg-primary-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <FiUsers className="w-8 h-8 text-white" />
+                      </div>
+                      <h3 className="text-xl font-bold text-navy-900 mb-2">Community Parade</h3>
+                      <p className="text-gray-600">Join our colorful procession through the community with traditional attire</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="bg-green-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <FiHeart className="w-8 h-8 text-white" />
+                      </div>
+                      <h3 className="text-xl font-bold text-navy-900 mb-2">Produce Auction</h3>
+                      <p className="text-gray-600">Participate in our unique fundraising auction with fresh produce</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Separator for 2024 Content */}
+              <div className="border-t-4 border-gray-200 pt-12 mb-8">
+                <div className="text-center mb-8">
+                  <span className="bg-gray-100 text-gray-600 px-4 py-2 rounded-full text-sm font-semibold">
+                    Harvest 2024 - Celebration Highlights
+                  </span>
+                </div>
               </div>
 
               {/* Main Content Sections */}
@@ -154,10 +264,10 @@ const Harvest2025Page: React.FC = () => {
                   viewport={{ once: true }}
                   className="bg-gold-50 p-8 rounded-xl"
                 >
-                  <h3 className="text-2xl font-bold text-navy-900 mb-4">Celebration Impact</h3>
+                  <h3 className="text-2xl font-bold text-navy-900 mb-4">Harvest 2024 Impact</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-gold-600 mb-2">500+</div>
+                      <div className="text-3xl font-bold text-gold-600 mb-2">200+</div>
                       <div className="text-gray-600">Community Members</div>
                     </div>
                     <div className="text-center">
@@ -165,7 +275,7 @@ const Harvest2025Page: React.FC = () => {
                       <div className="text-gray-600">Funds Raised</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-gold-600 mb-2">50+</div>
+                      <div className="text-3xl font-bold text-gold-600 mb-2">200+</div>
                       <div className="text-gray-600">Produce Items</div>
                     </div>
                   </div>
@@ -185,9 +295,9 @@ const Harvest2025Page: React.FC = () => {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-bold text-navy-900 mb-4">Harvest Celebration Gallery</h2>
+              <h2 className="text-4xl font-bold text-navy-900 mb-4">Harvest 2024 - Celebration Gallery</h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Capturing the joy, unity, and beautiful moments of our Annual Harvest Celebration 2025.
+                Capturing the joy, unity, and beautiful moments from our Annual Harvest Celebration 2024.
               </p>
             </motion.div>
 

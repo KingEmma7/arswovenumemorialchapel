@@ -9,13 +9,13 @@ const Hero: React.FC = () => {
       {/* Background Image - Full Cover */}
       <div className="absolute inset-0">
         <Image
-          src="/images/clergy/bishop1.jpg"
+          src="/images/logos/church-background5.jpeg"
           alt="Church congregation"
           fill
           className="object-cover object-[50%_25%]"
           priority
         />
-        <div className="absolute inset-0 bg-navy-900/50"></div>
+        <div className="absolute inset-0 bg-primary-600/30"></div>
       </div>
 
       {/* Content - Left Side */}
@@ -27,14 +27,14 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-6"
           >
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-light text-white mb-4 tracking-wide italic text-center">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-light text-white mb-4 tracking-wide italic text-left">
               Welcome to
             </h1>
-            <div className="relative rounded-lg bg-white/40 p-4">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-2 tracking-tight drop-shadow-lg text-center">
-                <span className="text-church-red text-bold">ARS</span> Wovenu Memorial Chapel
+            <div className="relative rounded-lg bg-white/90 backdrop-blur-sm p-6 shadow-2xl border border-white/20">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-2 tracking-tight text-left">
+                <span className="text-red-500">ARS</span> <span className="text-primary-600">Wovenu Memorial Chapel</span>
               </h1>
-              <div className="absolute -bottom-2 left-0 w-32 h-1 bg-church-red rounded-full shadow-lg"></div>
+              <div className="absolute -bottom-2 left-0 w-32 h-1 bg-red-700 rounded-full shadow-lg"></div>
             </div>
           </motion.div>
 
@@ -42,11 +42,9 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed "
+            className="text-xl md:text-2xl text-white mb-8 leading-relaxed bg-primary-600/60 backdrop-blur-sm rounded-lg p-4 shadow-lg"
           >
             Come worship with us!
-            <br />
-
           </motion.p>
 
           <motion.div
@@ -57,15 +55,15 @@ const Hero: React.FC = () => {
           >
             <Link
               href="/sabbath-service"
-              className="btn-primary text-lg px-8 py-4 font-semibold tracking-wide"
+              className="bg-red-500 hover:bg-red-800 text-white text-lg px-8 py-4 font-semibold tracking-wide rounded-lg shadow-lg transition-all duration-200 hover:shadow-xl transform hover:scale-105"
             >
               Sabbath Service
             </Link>
             <Link
-              href="/events"
-              className="btn-secondary text-lg px-8 py-4 bg-white/10 border-white/30 text-white hover:bg-white/20 font-semibold tracking-wide"
+              href="/news"
+              className="bg-primary-600/80 hover:bg-primary-600 border-2 border-white/50 text-white hover:border-white text-lg px-8 py-4 font-semibold tracking-wide rounded-lg shadow-lg transition-all duration-200 hover:shadow-xl transform hover:scale-105 backdrop-blur-sm"
             >
-              Upcoming Events
+              Latest News
             </Link>
           </motion.div>
         </div>

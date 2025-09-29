@@ -13,12 +13,14 @@ import Image from "next/image";
 const VerseOfTheDay: React.FC = () => {
   const [todayVerse, setTodayVerse] = useState<string>("");
   const [todayReference, setTodayReference] = useState<string>("");
+  const [todayEntry, setTodayEntry] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadTodayVerse = async () => {
       const today = new Date();
       const entry = getEntryForDate(today);
+      setTodayEntry(entry);
 
       if (entry && entry.references.length > 0) {
         try {
@@ -28,19 +30,13 @@ const VerseOfTheDay: React.FC = () => {
           setTodayReference(expandBookName(entry.references[0]));
         } catch (error) {
           console.error("Error loading verse:", error);
-          const fallbackVerse = formatVerseWithSuperscripts(
-            "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."
-          );
-          setTodayVerse(fallbackVerse);
-          setTodayReference("John 3:16");
+          setTodayVerse("");
+          setTodayReference("");
         }
       } else {
-        // If no entry found for today, show a default encouraging verse
-        const fallbackVerse = formatVerseWithSuperscripts(
-          "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."
-        );
-        setTodayVerse(fallbackVerse);
-        setTodayReference("John 3:16");
+        // If no entry found for today, don't show any verse
+        setTodayVerse("");
+        setTodayReference("");
       }
       setLoading(false);
     };
@@ -101,7 +97,7 @@ const VerseOfTheDay: React.FC = () => {
                 <div className="flex items-center justify-center h-32">
                   <div className="w-8 h-8 border-4 border-gold-500 border-t-transparent rounded-full animate-spin"></div>
                 </div>
-              ) : (
+              ) : todayVerse && todayReference ? (
                 <>
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-12 h-12 bg-gold-500 rounded-full flex items-center justify-center">
@@ -137,6 +133,22 @@ const VerseOfTheDay: React.FC = () => {
                     </p>
                   </motion.div>
                 </>
+              ) : (
+                <div className="text-center py-8">
+                  <div className="w-16 h-16 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <FiCalendar className="w-8 h-8 text-gray-500" />
+                  </div>
+                  <p className="text-gray-500 text-lg mb-2">No scripture reading available for today.</p>
+                  {todayEntry?.note && (
+                    <>
+                      <p className="text-gray-600 text-lg mb-2 font-semibold">Special Day:</p>
+                      <p className="text-gold-600 text-lg mb-4 font-medium">{todayEntry.note}</p>
+                    </>
+                  )}
+                  <p className="text-gray-400 text-sm">
+                    Visit our <Link href="/pocket-calendar" className="text-gold-600 hover:text-gold-700 font-semibold">Pocket Calendar</Link> to explore other dates.
+                  </p>
+                </div>
               )}
             </div>
           </motion.div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FiUsers, FiHeart, FiStar, FiArrowRight, FiCamera, FiShield } from 'react-icons/fi';
+import { FiUsers, FiHeart, FiStar, FiArrowRight, FiCamera, FiShield, FiMusic } from 'react-icons/fi';
 
 interface Group {
   id: number;
@@ -78,6 +78,22 @@ const Groups: React.FC = () => {
         image: "/images/clergy/reubenopata.jpg",
         icon: <FiCamera className="w-6 h-6" />,
         href: "/wmc-media-team"
+      },
+      {
+        id: 9,
+        title: "Culture Group",
+        description: "Celebrating and preserving our rich Ewe cultural heritage through traditional music, dance, and customs.",
+        image: "/images/groups/culture-group-1.jpeg",
+        icon: <FiStar className="w-6 h-6" />,
+        href: "/culture-group"
+      },
+      {
+        id: 10,
+        title: "Tutudo",
+        description: "Traditional drumming group that celebrates our cultural heritage through powerful rhythms and spiritual expression.",
+        image: "/images/groups/tutudo-1.jpeg",
+        icon: <FiMusic className="w-6 h-6" />,
+        href: "/tutudo"
       }
   ];
 

@@ -56,7 +56,7 @@ const SabbathServicePage: React.FC = () => {
         <section className="pt-24 h-1/2 pb-16 bg-gradient-to-br from-navy-900 to-navy-800 relative overflow-hidden">
           <div className="absolute inset-0">
             <Image
-              src="/images/clergy/bishop-veliane-6.jpeg"
+              src="/images/logos/church-background2.jpeg"
               alt="Sabbath Service"
               fill
               className="object-cover opacity-20"

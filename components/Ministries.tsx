@@ -111,14 +111,14 @@ const Ministries: React.FC = () => {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/50 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-primary-600/50 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
                   {ministry.icon}
                 </div>
               </div>
               
               <div className="p-6">
-                <h3 className="text-xl font-bold text-navy-900 mb-3">
+                <h3 className="text-xl font-bold text-primary-600 mb-3">
                   {ministry.title}
                 </h3>
                 <p className="text-gray-600 mb-4 leading-relaxed">

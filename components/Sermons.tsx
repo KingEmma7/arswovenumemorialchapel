@@ -29,8 +29,8 @@ const Sermons: React.FC = () => {
       id: 2,
       title: "Victory in Sanctuary",
       speaker: "Bishop Sinametor Wovenu Tagbor",
-        date: "Jan 08, 2024",
-        image: "/images/clergy/bishop-sina2.jpeg",
+      date: "Jan 08, 2024",
+      image: "/images/clergy/bishop-sina2.jpeg",
       description: "Understanding God's victory and how it transforms our lives through sanctuary worship.",
       duration: "38 min"
     },
@@ -113,7 +113,7 @@ const Sermons: React.FC = () => {
               whileHover={{ y: -10 }}
               className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100"
             >
-              <div className="relative h-64 group">
+              <div className="relative h-64 group overflow-hidden">
                 <Image
                   src={sermon.image}
                   alt={sermon.title}

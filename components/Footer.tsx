@@ -74,9 +74,9 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-navy-900 text-white">
+    <footer className="bg-primary-600 text-white">
       {/* Main Footer Content */}
-      <div className="section-padding border-b border-navy-700">
+      <div className="section-padding border-b border-primary-500">
         <div className="container-width">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             
@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
               <div className="flex items-center space-x-2">
                 <FiHome className="h-8 w-8 text-gold-500" />
                 <div>
-                  <div className="text-xs text-gray-300">Church of</div>
+                  <div className="text-xs text-gray-300">The Church of</div>
                   <div className="font-bold text-lg">Apostles Revelation Society</div>
                   <div className="text-sm text-gray-300">Wovenu Memorial Chapel</div>
                 </div>
@@ -202,7 +202,7 @@ const Footer: React.FC = () => {
                       href={social.href}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
-                      className="bg-navy-800 hover:bg-gold-500 p-3 rounded-full transition-colors duration-200"
+                      className="bg-primary-500 hover:bg-gold-500 p-3 rounded-full transition-colors duration-200"
                       aria-label={social.label}
                     >
                       {social.icon}
@@ -247,7 +247,7 @@ const Footer: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-center mt-6 pt-6 border-t border-navy-700"
+            className="text-center mt-6 pt-6 border-t border-primary-500"
           >
             <p 
               className="text-gold-400 font-semibold italic font-sans"

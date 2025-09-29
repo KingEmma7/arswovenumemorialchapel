@@ -50,36 +50,7 @@ const NewsPage: React.FC = () => {
       image: "/images/news/outreach.jpeg",
       category: "Community Service"
     },
-    {
-      id: 4,
-      title: "New Teaching Series: Spiritual Growth",
-      excerpt: "Join us for our new teaching series focused on spiritual growth and personal development in Christ.",
-      author: "Teaching Ministry",
-      date: "July 10th, 2025",
-      readTime: "6 min read",
-      image: "/images/news/wmc-40.png",
-      category: "Teaching"
-    },
-    {
-      id: 5,
-      title: "Men's Fellowship Meeting",
-      excerpt: "Monthly gathering of our men's fellowship group for prayer, study, and fellowship.",
-      author: "Men's Fellowship",
-      date: "July 5th, 2025",
-      readTime: "2 min read",
-      image: "/images/clergy/wovenu.jpg",
-      category: "Ministries"
-    },
-    {
-      id: 6,
-      title: "Choir Practice Schedule Update",
-      excerpt: "Updated practice schedules for both Senior and Junior choirs with new repertoire preparation.",
-      author: "Music Ministry",
-      date: "July 1st, 2025",
-      readTime: "3 min read",
-      image: "/images/groups/juniorchoir.jpg",
-      category: "Ministries"
-    }
+
   ];
 
   const categories = ["All", "Events", "Ministries", "Community Service", "Teaching", "Youth", "Announcements"];

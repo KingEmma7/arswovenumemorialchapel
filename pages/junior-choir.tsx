@@ -168,7 +168,7 @@ const JuniorChoirPage: React.FC = () => {
                     alt={image.alt}
                     width={400}
                     height={300}
-                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-300 object-top"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300" />
                 </motion.div>

@@ -18,7 +18,8 @@ const Navbar: React.FC = () => {
         { name: 'Sabbath Service', href: '/sabbath-service' },
         { name: 'ShewBread', href: '/shewbread' },
         { name: 'Wednesday Teachings', href: '/wednesday-teachings' },
-        { name: 'Friday Prayer Service', href: '/friday-prayer' }
+        { name: 'Friday Prayer Service', href: '/friday-prayer' },
+        { name: 'Elders of the Week', href: '/elders-of-the-week' }
       ]
     },
     { name: 'Teachings', href: '/teachings' },
@@ -34,6 +35,8 @@ const Navbar: React.FC = () => {
         { name: 'Junior Choir', href: '/junior-choir' },
         { name: 'Usher\'s Ministry', href: '/ushers-ministry' },
         { name: 'WMC Media Team', href: '/wmc-media-team' },
+        { name: 'Culture Group', href: '/culture-group' },
+        { name: 'Tutudo', href: '/tutudo' },
       ]
     },
     { name: 'Clergy', href: '/clergy' },
@@ -73,7 +76,7 @@ const Navbar: React.FC = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 bg-navy-900/95 backdrop-blur-sm z-50"
+      className="fixed top-0 left-0 right-0 bg-primary-600/95 backdrop-blur-sm z-50"
       style={{ zIndex: 1000 }}
     >
       <div className="container-width">
@@ -92,7 +95,7 @@ const Navbar: React.FC = () => {
               <Image src="/images/arslogo.png" alt="ARS logo" width={100} height={100} />
             </motion.div>
             <div className="text-white">
-              <div className="text-xs text-gray-300">Church of</div>
+              <div className="text-xs text-gray-300">The Church of</div>
               <div className="font-bold text-lg">Apostles Revelation Society</div>
               <div className="text-sm text-gray-300 uppercase font-bold">Wovenu Memorial Chapel</div>
             </div>
@@ -134,7 +137,7 @@ const Navbar: React.FC = () => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="absolute top-full left-0 mt-2 w-48 bg-navy-800 rounded-lg shadow-xl z-50 text-uppercase"
+                    className="absolute top-full left-0 mt-2 w-48 bg-primary-600 rounded-lg shadow-xl z-50 text-uppercase"
                     onMouseEnter={() => handleMouseEnter(item.name)}
                     onMouseLeave={handleMouseLeave}
                   >
@@ -143,7 +146,7 @@ const Navbar: React.FC = () => {
                         <Link
                           key={subItem.name}
                           href={subItem.href}
-                          className="block px-4 py-2 text-white hover:bg-navy-700 hover:text-gold-500 transition-colors duration-200 text-uppercase"
+                          className="block px-4 py-2 text-white hover:bg-primary-500 hover:text-gold-500 transition-colors duration-200 text-uppercase"
                         >
                           {subItem.name}
                         </Link>
@@ -173,7 +176,7 @@ const Navbar: React.FC = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="lg:hidden bg-navy-800 rounded-lg mb-4"
+              className="lg:hidden bg-primary-600 rounded-lg mb-4"
             >
               <div className="py-4">
                 {menuItems.map((item, index) => (
@@ -187,7 +190,7 @@ const Navbar: React.FC = () => {
                       <div>
                         <button
                           onClick={() => toggleDropdown(item.name)}
-                          className="w-full flex items-center justify-between px-4 py-3 text-white hover:bg-navy-700 hover:text-gold-500 transition-colors duration-200 text-uppercase"
+                          className="w-full flex items-center justify-between px-4 py-3 text-white hover:bg-primary-500 hover:text-gold-500 transition-colors duration-200 text-uppercase"
                         >
                           <span>{item.name}</span>
                           <FiChevronDown className={`w-4 h-4 transition-transform duration-200 ${
@@ -199,13 +202,13 @@ const Navbar: React.FC = () => {
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
-                            className="bg-navy-700"
+                            className="bg-primary-500"
                           >
                             {item.submenu.map((subItem) => (
                               <Link
                                 key={subItem.name}
                                 href={subItem.href}
-                                className="block px-8 py-2 text-white hover:bg-navy-600 hover:text-gold-500 transition-colors duration-200 text-uppercase"
+                                className="block px-8 py-2 text-white hover:bg-primary-400 hover:text-gold-500 transition-colors duration-200 text-uppercase"
                                 onClick={() => setIsOpen(false)}
                               >
                                 {subItem.name}
@@ -217,7 +220,7 @@ const Navbar: React.FC = () => {
                     ) : (
                       <Link
                         href={item.href}
-                        className="block px-4 py-3 text-white hover:bg-navy-700 hover:text-gold-500 transition-colors duration-200 text-uppercase"
+                        className="block px-4 py-3 text-white hover:bg-primary-500 hover:text-gold-500 transition-colors duration-200 text-uppercase"
                         onClick={() => setIsOpen(false)}
                       >
                         {item.name}
