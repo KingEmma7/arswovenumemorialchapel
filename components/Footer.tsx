@@ -89,7 +89,7 @@ const Footer: React.FC = () => {
               className="space-y-6"
             >
               <div className="flex items-center space-x-2">
-                <FiHome className="h-8 w-8 text-gold-500" />
+                <FiHome className="h-8 w-8 text-navy-900" />
                 <div>
                   <div className="text-xs text-gray-300">The Church of</div>
                   <div className="font-bold text-lg">Apostles Revelation Society</div>
@@ -99,7 +99,7 @@ const Footer: React.FC = () => {
               
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
-                  <FiMapPin className="w-5 h-5 text-gold-500 mt-1 flex-shrink-0" />
+                  <FiMapPin className="w-5 h-5 text-navy-900 mt-1 flex-shrink-0" />
                   <div>
                     <p className="text-gray-300">
                       Asore Junction, <a href="/contact" className="hover:underline">Musuku</a><br />
@@ -110,12 +110,12 @@ const Footer: React.FC = () => {
                 </div>
                 
                 <div className="flex items-center space-x-3">
-                  <FiPhone className="w-5 h-5 text-gold-500" />
+                  <FiPhone className="w-5 h-5 text-navy-900" />
                   <span className="text-gray-300">+233 24 345 1929</span>
                 </div>
                 
                 <div className="flex items-center space-x-3">
-                  <FiMail className="w-5 h-5 text-gold-500" />
+                  <FiMail className="w-5 h-5 text-navy-900" />
                   <span className="text-gray-300">info@wmc-ars.org</span>
                 </div>
               </div>
@@ -128,7 +128,7 @@ const Footer: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-xl font-bold mb-6 text-gold-500">Quick Links</h3>
+              <h3 className="text-xl font-bold mb-6 text-navy-900">Quick Links</h3>
               <ul className="space-y-3">
                 {quickLinks.map((link) => (
                   <li key={link.name}>
@@ -150,7 +150,7 @@ const Footer: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-xl font-bold mb-6 text-gold-500">Groups</h3>
+              <h3 className="text-xl font-bold mb-6 text-navy-900">Groups</h3>
               <ul className="space-y-3">
                 {ministries.map((ministry) => (
                   <li key={ministry.name}>
@@ -174,17 +174,17 @@ const Footer: React.FC = () => {
               className="space-y-6"
             >
               <div>
-                <h3 className="text-xl font-bold mb-6 text-gold-500">Service Times</h3>
+                <h3 className="text-xl font-bold mb-6 text-navy-900">Service Times</h3>
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3">
-                    <FiClock className="w-5 h-5 text-gold-500" />
+                    <FiClock className="w-5 h-5 text-navy-900" />
                     <div>
                       <p className="font-semibold">Sabbath Service</p>
                       <p className="text-gray-300 text-sm">Sunday 9:00 AM</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <FiClock className="w-5 h-5 text-gold-500" />
+                    <FiClock className="w-5 h-5 text-navy-900" />
                     <div>
                       <p className="font-semibold">Bible Study</p>
                       <p className="text-gray-300 text-sm">Wednesday 7:00 PM</p>
@@ -194,7 +194,7 @@ const Footer: React.FC = () => {
               </div>
 
               <div>
-                <h3 className="text-xl font-bold mb-4 text-gold-500">Follow Us</h3>
+                <h3 className="text-xl font-bold mb-4 text-navy-900">Follow Us</h3>
                 <div className="flex space-x-4">
                   {socialLinks.map((social) => (
                     <motion.a
@@ -202,7 +202,7 @@ const Footer: React.FC = () => {
                       href={social.href}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
-                      className="bg-primary-500 hover:bg-gold-500 p-3 rounded-full transition-colors duration-200"
+                      className="bg-primary-500 hover:bg-navy-900 p-3 rounded-full transition-colors duration-200"
                       aria-label={social.label}
                     >
                       {social.icon}
@@ -250,7 +250,7 @@ const Footer: React.FC = () => {
             className="text-center mt-6 pt-6 border-t border-primary-500"
           >
             <p 
-              className="text-gold-400 font-semibold italic font-sans"
+              className="text-navy-900 font-semibold italic font-sans"
               dangerouslySetInnerHTML={{ __html: `"${'By this everyone will know that you are my disciples, if you love one another.'}"` }}
             />
             <p className="text-gray-400 text-sm mt-2">{ 'John 13:35'}</p>

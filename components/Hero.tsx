@@ -15,7 +15,7 @@ const Hero: React.FC = () => {
           className="object-cover object-[50%_25%]"
           priority
         />
-        <div className="absolute inset-0 bg-primary-600/30"></div>
+        <div className="absolute inset-0 "></div>
       </div>
 
       {/* Content - Left Side */}
@@ -27,7 +27,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-6"
           >
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-light text-white mb-4 tracking-wide italic text-left">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-light text-white mb-4 tracking-wide italic text-left bg-black/50 backdrop-blur-sm p-2 rounded-lg shadow-lg border border-white/20 w-fit ">
               Welcome to
             </h1>
             <div className="relative rounded-lg bg-white/90 backdrop-blur-sm p-6 shadow-2xl border border-white/20">
