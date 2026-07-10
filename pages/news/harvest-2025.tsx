@@ -271,11 +271,11 @@ const Harvest2025Page: React.FC = () => {
                       <div className="text-gray-600">Community Members</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-gold-600 mb-2">₵50,000+</div>
+                      <div className="text-3xl font-bold text-gold-600 mb-2">₵120,000</div>
                       <div className="text-gray-600">Funds Raised</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-gold-600 mb-2">200+</div>
+                      <div className="text-3xl font-bold text-gold-600 mb-2">100+</div>
                       <div className="text-gray-600">Produce Items</div>
                     </div>
                   </div>

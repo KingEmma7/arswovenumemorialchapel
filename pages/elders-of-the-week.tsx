@@ -55,12 +55,21 @@ const EldersOfTheWeekPage: React.FC = () => {
       role: "Bible Study & Counseling",
       phone: "+233 26 345 6789",
       image: "/images/clergy/prof-senadza.jpeg",
+    },
+    {
+      id: 5,
+      name: "Reuben Opata",
+      title: "Elder",
+      role: "Youth & Media Ministry",
+      phone: "+233 25 678 9012",
+      image: "/images/clergy/reuben-opata.jpg",
     }
+
   ];
 
   const deaconesses: ClergyCounting[] = [
     {
-      id: 5,
+      id: 6,
       name: "Deaconess Dadia",
       title: "Senior Deaconess",
       role: "Women's Ministry & Care",
@@ -70,14 +79,7 @@ const EldersOfTheWeekPage: React.FC = () => {
   ];
 
   const supportingClergy: ClergyCounting[] = [
-    {
-      id: 6,
-      name: "Reuben Opata",
-      title: "Elder",
-      role: "Youth & Media Ministry",
-      phone: "+233 25 678 9012",
-      image: "/images/clergy/reuben-opata.jpg",
-    }
+    
   ];
 
   const containerVariants = {
