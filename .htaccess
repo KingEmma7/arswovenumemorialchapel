@@ -1,0 +1,12 @@
+# Hostinger / LiteSpeed: map clean URLs to Next.js static export .html files.
+# Without this, /brass-band 404s while /brass-band.html works.
+# Copied into out/ on `next build` (output: 'export') via the public/ folder.
+
+Options -MultiViews
+RewriteEngine On
+
+# Serve /path as /path.html when that file exists
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L]
