@@ -1,12 +1,19 @@
 import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import MemberAccessGate from '@/components/attendance/MemberAccessGate';
+import { useAuth } from '@/lib/useAuth';
 import { FiMusic, FiAward, FiUsers, FiFlag, FiSun } from 'react-icons/fi';
 
+const PORTAL_PATH = '/portal/brass-band';
+const VIEWER_EMAIL = 'brassband-viewer@wmc-ars.org';
+
 const BrassBandPage: React.FC = () => {
+  const { user, loading } = useAuth();
   const pageVariants = {
     initial: { opacity: 0, y: 30 },
     in: { opacity: 1, y: 0 },
@@ -156,6 +163,32 @@ const BrassBandPage: React.FC = () => {
             <button className="btn-primary">
               Enquire About Joining
             </button>
+          </div>
+        </section>
+
+        {/* Attendance Portal Section */}
+        <section id="attendance-portal" className="section-padding bg-navy-900 scroll-mt-24">
+          <div className="container-width text-center">
+            <h2 className="text-3xl font-bold text-white mb-3">Attendance Portal</h2>
+            <p className="text-navy-200 max-w-2xl mx-auto mb-8">
+              For band members and admins to view or record Sunday attendance.
+            </p>
+
+            {loading ? null : user ? (
+              <Link href={PORTAL_PATH} className="btn-primary">
+                Go to Attendance Portal
+              </Link>
+            ) : (
+              <div className="flex flex-col items-center gap-6">
+                <MemberAccessGate viewerEmail={VIEWER_EMAIL} portalPath={PORTAL_PATH} />
+                <Link
+                  href={`/login?redirect=${encodeURIComponent(PORTAL_PATH)}`}
+                  className="text-navy-300 hover:text-gold-400 text-sm underline transition-colors duration-200"
+                >
+                  Admin Login
+                </Link>
+              </div>
+            )}
           </div>
         </section>
       </main>

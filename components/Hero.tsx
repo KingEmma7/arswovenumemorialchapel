@@ -38,14 +38,19 @@ const Hero: React.FC = () => {
             </div>
           </motion.div>
 
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-white mb-8 leading-relaxed bg-primary-600/60 backdrop-blur-sm rounded-lg p-4 shadow-lg"
+            className="mb-8"
           >
-            Come worship with us!
-          </motion.p>
+            <Link
+              href="/contact"
+              className="text-xl md:text-2xl text-white leading-relaxed bg-primary-600/60 backdrop-blur-sm rounded-lg p-4 shadow-lg block transition hover:bg-primary-700/80 border border-white/20 w-fit"
+            >
+              Come worship with us!
+            </Link>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, x: -30 }}
