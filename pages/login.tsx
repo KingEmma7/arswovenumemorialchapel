@@ -8,6 +8,15 @@ import Footer from '@/components/Footer';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/useAuth';
 
+// Only allow same-origin path redirects (e.g. "/portal/brass-band"). Rejects
+// absolute URLs and protocol-relative paths like "//evil.com" or "/\evil.com",
+// which browsers would otherwise treat as an off-site redirect.
+function safeRedirect(value: unknown): string {
+  if (typeof value !== 'string') return '/';
+  if (!value.startsWith('/') || value.startsWith('//') || value.startsWith('/\\')) return '/';
+  return value;
+}
+
 const LoginPage: React.FC = () => {
   const router = useRouter();
   const { user, loading } = useAuth();
@@ -16,7 +25,7 @@ const LoginPage: React.FC = () => {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const redirectTo = typeof router.query.redirect === 'string' ? router.query.redirect : '/';
+  const redirectTo = safeRedirect(router.query.redirect);
 
   useEffect(() => {
     if (router.isReady && !loading && user) {
