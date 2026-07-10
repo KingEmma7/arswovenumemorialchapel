@@ -60,9 +60,9 @@ export async function recordPayment(
   period: string,
   amount: number,
   paidOn: string,
-  recordedBy: string,
   note?: string | null
 ): Promise<void> {
+  // recorded_by is set server-side by a trigger (auth.uid()) - not client-supplied.
   const { error } = await supabase.from('dues_payments').upsert(
     {
       group_id: groupId,
@@ -70,7 +70,6 @@ export async function recordPayment(
       period,
       amount,
       paid_on: paidOn,
-      recorded_by: recordedBy,
       note: note ?? null,
     },
     { onConflict: 'roster_member_id,period' }

@@ -1,6 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { AttendanceRecord, EventRow, RosterMember, fetchAttendanceForEvents, fetchEvents } from '@/lib/attendance';
+import {
+  AttendanceStatusRecord,
+  EventRow,
+  RosterMember,
+  fetchAttendanceStatuses,
+  fetchAttendanceWithNotes,
+  fetchEvents,
+} from '@/lib/attendance';
 
 interface AttendanceGridProps {
   groupId: string;
@@ -42,19 +49,22 @@ function dedupeByDate(events: EventRow[]): EventRow[] {
   return Array.from(new Map(events.map((e) => [e.date, e])).values());
 }
 
+// Present or excused keep a streak alive. Absent, or no record at all for an
+// event that happened, breaks it - an unmarked week isn't assumed to be fine.
 function computeStreak(events: EventRow[], recordsByMember: Record<string, string>) {
   let streak = 0;
   for (let i = events.length - 1; i >= 0; i--) {
     const status = recordsByMember[events[i].id];
     if (status === 'present') streak++;
-    else if (status === 'absent') break;
+    else if (status === 'excused') continue;
+    else break;
   }
   return streak;
 }
 
 const AttendanceGrid: React.FC<AttendanceGridProps> = ({ groupId, roster, isAdmin, refreshKey }) => {
   const [events, setEvents] = useState<EventRow[]>([]);
-  const [records, setRecords] = useState<AttendanceRecord[]>([]);
+  const [records, setRecords] = useState<(AttendanceStatusRecord & { note?: string | null })[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [monthCursor, setMonthCursor] = useState<MonthCursor | null>(null);
@@ -69,7 +79,8 @@ const AttendanceGrid: React.FC<AttendanceGridProps> = ({ groupId, roster, isAdmi
       setError('');
       try {
         const evts = dedupeByDate(await fetchEvents(groupId));
-        const recs = await fetchAttendanceForEvents(evts.map((e) => e.id));
+        const eventIds = evts.map((e) => e.id);
+        const recs = isAdmin ? await fetchAttendanceWithNotes(eventIds) : await fetchAttendanceStatuses(eventIds);
         if (cancelled) return;
         setEvents(evts);
         setRecords(recs);
@@ -89,13 +100,13 @@ const AttendanceGrid: React.FC<AttendanceGridProps> = ({ groupId, roster, isAdmi
     return () => {
       cancelled = true;
     };
-  }, [groupId, refreshKey]);
+  }, [groupId, refreshKey, isAdmin]);
 
   const byMember = useMemo(() => {
     const map: Record<string, Record<string, { status: string; note: string | null }>> = {};
     for (const r of records) {
       if (!map[r.roster_member_id]) map[r.roster_member_id] = {};
-      map[r.roster_member_id][r.event_id] = { status: r.status, note: r.note };
+      map[r.roster_member_id][r.event_id] = { status: r.status, note: r.note ?? null };
     }
     return map;
   }, [records]);

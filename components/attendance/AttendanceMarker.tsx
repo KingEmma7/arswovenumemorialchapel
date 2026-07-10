@@ -5,7 +5,7 @@ import {
   RosterMember,
   fetchEventByDate,
   getOrCreateEvent,
-  fetchAttendanceForEvents,
+  fetchAttendanceWithNotes,
   markAttendance,
   clearAttendance,
   deleteEventIfEmpty,
@@ -16,7 +16,6 @@ import {
 interface AttendanceMarkerProps {
   groupId: string;
   roster: RosterMember[];
-  userId: string;
   onMarked?: () => void;
 }
 
@@ -35,7 +34,7 @@ function formatSunday(date: string) {
   });
 }
 
-const AttendanceMarker: React.FC<AttendanceMarkerProps> = ({ groupId, roster, userId, onMarked }) => {
+const AttendanceMarker: React.FC<AttendanceMarkerProps> = ({ groupId, roster, onMarked }) => {
   const [date, setDate] = useState(mostRecentSunday());
   const [eventId, setEventId] = useState<string | null>(null);
   const [marks, setMarks] = useState<Record<string, AttendanceStatus>>({});
@@ -45,6 +44,24 @@ const AttendanceMarker: React.FC<AttendanceMarkerProps> = ({ groupId, roster, us
 
   const activeRoster = roster.filter((m) => m.status === 'active');
 
+  // isStale lets a superseded call (e.g. the admin clicked "Next Sunday" again
+  // before this fetch resolved) bail out instead of overwriting newer state.
+  const refresh = async (isStale: () => boolean = () => false) => {
+    const event = await fetchEventByDate(groupId, date);
+    if (isStale()) return;
+    if (!event) {
+      setEventId(null);
+      setMarks({});
+      setNotes({});
+      return;
+    }
+    const records = await fetchAttendanceWithNotes([event.id]);
+    if (isStale()) return;
+    setEventId(event.id);
+    setMarks(Object.fromEntries(records.map((r) => [r.roster_member_id, r.status])));
+    setNotes(Object.fromEntries(records.filter((r) => r.note).map((r) => [r.roster_member_id, r.note as string])));
+  };
+
   useEffect(() => {
     let cancelled = false;
 
@@ -52,21 +69,7 @@ const AttendanceMarker: React.FC<AttendanceMarkerProps> = ({ groupId, roster, us
       setLoading(true);
       setError('');
       try {
-        const event = await fetchEventByDate(groupId, date);
-        if (cancelled) return;
-        if (!event) {
-          setEventId(null);
-          setMarks({});
-          setNotes({});
-          return;
-        }
-        const records = await fetchAttendanceForEvents([event.id]);
-        if (cancelled) return;
-        setEventId(event.id);
-        setMarks(Object.fromEntries(records.map((r) => [r.roster_member_id, r.status])));
-        setNotes(
-          Object.fromEntries(records.filter((r) => r.note).map((r) => [r.roster_member_id, r.note as string]))
-        );
+        await refresh(() => cancelled);
       } catch {
         if (!cancelled) setError('Could not load attendance for this date.');
       } finally {
@@ -78,7 +81,17 @@ const AttendanceMarker: React.FC<AttendanceMarkerProps> = ({ groupId, roster, us
     return () => {
       cancelled = true;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [groupId, date]);
+
+  const resyncAfterFailure = async (message: string) => {
+    setError(message);
+    try {
+      await refresh();
+    } catch {
+      // best-effort resync; the error above already tells the admin to retry
+    }
+  };
 
   const ensureEvent = async (): Promise<string> => {
     if (eventId) return eventId;
@@ -91,10 +104,10 @@ const AttendanceMarker: React.FC<AttendanceMarkerProps> = ({ groupId, roster, us
     setMarks((prev) => ({ ...prev, [rosterMemberId]: status }));
     try {
       const id = await ensureEvent();
-      await markAttendance(id, rosterMemberId, status, userId, notes[rosterMemberId] ?? null);
+      await markAttendance(id, rosterMemberId, status, notes[rosterMemberId] ?? null);
       onMarked?.();
     } catch {
-      setError('Failed to save a mark. Please retry.');
+      await resyncAfterFailure('Failed to save a mark. Please retry.');
     }
   };
 
@@ -106,10 +119,10 @@ const AttendanceMarker: React.FC<AttendanceMarkerProps> = ({ groupId, roster, us
     if (marks[rosterMemberId] !== 'excused') return;
     try {
       const id = await ensureEvent();
-      await markAttendance(id, rosterMemberId, 'excused', userId, notes[rosterMemberId] ?? null);
+      await markAttendance(id, rosterMemberId, 'excused', notes[rosterMemberId] ?? null);
       onMarked?.();
     } catch {
-      setError('Failed to save the reason. Please retry.');
+      await resyncAfterFailure('Failed to save the reason. Please retry.');
     }
   };
 
@@ -131,7 +144,7 @@ const AttendanceMarker: React.FC<AttendanceMarkerProps> = ({ groupId, roster, us
       }
       onMarked?.();
     } catch {
-      setError('Failed to clear the mark. Please retry.');
+      await resyncAfterFailure('Failed to clear the mark. Please retry.');
     }
   };
 

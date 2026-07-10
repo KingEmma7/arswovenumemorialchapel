@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { FiChevronLeft, FiChevronRight, FiCheck, FiTrash2, FiEdit2 } from 'react-icons/fi';
-import { RosterMember } from '@/lib/attendance';
+import { RosterMember, updateDuesStartPeriod } from '@/lib/attendance';
 import {
   DuesPayment,
   DuesSettings,
@@ -16,7 +16,7 @@ interface DuesPanelProps {
   groupId: string;
   roster: RosterMember[];
   isAdmin: boolean;
-  userId: string;
+  onRosterChange?: () => void;
 }
 
 interface MonthCursor {
@@ -50,7 +50,12 @@ function todayLocal(): string {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 }
 
-const DuesPanel: React.FC<DuesPanelProps> = ({ groupId, roster, isAdmin, userId }) => {
+function periodToMonthCursor(period: string): MonthCursor {
+  const [y, m] = period.split('-').map(Number);
+  return { year: y, month: m - 1 };
+}
+
+const DuesPanel: React.FC<DuesPanelProps> = ({ groupId, roster, isAdmin, onRosterChange }) => {
   const [settings, setSettings] = useState<DuesSettings | null>(null);
   const [amountDraft, setAmountDraft] = useState('');
   const [payments, setPayments] = useState<DuesPayment[]>([]);
@@ -93,16 +98,14 @@ const DuesPanel: React.FC<DuesPanelProps> = ({ groupId, roster, isAdmin, userId 
   );
 
   const balances = useMemo(() => {
-    if (payments.length === 0 || !settings) return null;
-    const earliestPeriod = payments[0].period;
-    const [ey, em] = earliestPeriod.split('-').map(Number);
-    const earliest: MonthCursor = { year: ey, month: em - 1 };
+    if (!settings) return null;
     const now = new Date();
     const current: MonthCursor = { year: now.getFullYear(), month: now.getMonth() };
-    const months = monthsBetween(earliest, current);
-    const monthSet = new Set(months.map((m) => periodFor(m.year, m.month)));
 
     return activeRoster.map((member) => {
+      const start = periodToMonthCursor(member.dues_start_period);
+      const months = monthsBetween(start, current);
+      const monthSet = new Set(months.map((m) => periodFor(m.year, m.month)));
       const memberPayments = payments.filter((p) => p.roster_member_id === member.id && monthSet.has(p.period));
       const totalPaid = memberPayments.reduce((sum, p) => sum + p.amount, 0);
       const totalOwed = settings.monthlyAmount * months.length;
@@ -113,18 +116,31 @@ const DuesPanel: React.FC<DuesPanelProps> = ({ groupId, roster, isAdmin, userId 
   const handleSaveAmount = async () => {
     const value = Number(amountDraft);
     if (Number.isNaN(value) || !settings) return;
+    const previous = settings.monthlyAmount;
     setSettings({ ...settings, monthlyAmount: value });
     try {
       await updateDuesSettings(groupId, value);
     } catch {
       setError('Failed to update the monthly amount.');
+      setSettings((s) => (s ? { ...s, monthlyAmount: previous } : s));
+      setAmountDraft(String(previous));
+    }
+  };
+
+  const handleDuesStartChange = async (rosterMemberId: string, monthValue: string) => {
+    if (!monthValue) return;
+    try {
+      await updateDuesStartPeriod(rosterMemberId, `${monthValue}-01`);
+      onRosterChange?.();
+    } catch {
+      setError('Failed to update the dues start month.');
     }
   };
 
   const handleMarkPaid = async (rosterMemberId: string) => {
     if (!settings) return;
     try {
-      await recordPayment(groupId, rosterMemberId, period, settings.monthlyAmount, todayLocal(), userId);
+      await recordPayment(groupId, rosterMemberId, period, settings.monthlyAmount, todayLocal());
       await load();
     } catch {
       setError('Failed to record payment.');
@@ -142,7 +158,7 @@ const DuesPanel: React.FC<DuesPanelProps> = ({ groupId, roster, isAdmin, userId 
     if (Number.isNaN(value)) return;
     setEditingId(null);
     try {
-      await recordPayment(groupId, rosterMemberId, period, value, editDate, userId);
+      await recordPayment(groupId, rosterMemberId, period, value, editDate);
       await load();
     } catch {
       setError('Failed to update payment.');
@@ -282,13 +298,14 @@ const DuesPanel: React.FC<DuesPanelProps> = ({ groupId, roster, isAdmin, userId 
         <div>
           <h3 className="text-md font-bold text-navy-900 mb-1">Balances</h3>
           <p className="text-navy-400 text-xs mb-3">
-            Tracked over {balances[0]?.monthsTracked ?? 0} month(s), since dues tracking began.
+            Each member&apos;s balance is tracked from their own dues start month through today.
           </p>
           <div className="overflow-x-auto">
             <table className="min-w-full text-sm border-separate border-spacing-0">
               <thead>
                 <tr>
                   <th className="text-left px-3 py-2 text-navy-500 font-medium">Member</th>
+                  <th className="px-3 py-2 text-navy-500 font-medium">Dues Since</th>
                   <th className="px-3 py-2 text-navy-500 font-medium">Total Paid</th>
                   <th className="px-3 py-2 text-navy-500 font-medium">Balance</th>
                 </tr>
@@ -297,6 +314,18 @@ const DuesPanel: React.FC<DuesPanelProps> = ({ groupId, roster, isAdmin, userId 
                 {balances.map(({ member, totalPaid, balance }) => (
                   <tr key={member.id} className="border-t border-navy-100">
                     <td className="px-3 py-2 text-navy-900 font-medium whitespace-nowrap">{member.full_name}</td>
+                    <td className="px-3 py-2 text-center">
+                      {isAdmin ? (
+                        <input
+                          type="month"
+                          defaultValue={member.dues_start_period.slice(0, 7)}
+                          onChange={(e) => handleDuesStartChange(member.id, e.target.value)}
+                          className="border border-navy-200 rounded-lg px-2 py-1 text-xs"
+                        />
+                      ) : (
+                        <span className="text-navy-500 text-xs">{member.dues_start_period.slice(0, 7)}</span>
+                      )}
+                    </td>
                     <td className="px-3 py-2 text-center text-navy-700">
                       {settings.currency} {totalPaid.toFixed(2)}
                     </td>

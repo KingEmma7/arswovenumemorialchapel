@@ -54,6 +54,7 @@ const InventoryPanel: React.FC<InventoryPanelProps> = ({ groupId, isAdmin }) => 
       await updateInventoryItem(item.id, { quantity });
     } catch {
       setError('Failed to update quantity.');
+      await load();
     }
   };
 
@@ -63,6 +64,7 @@ const InventoryPanel: React.FC<InventoryPanelProps> = ({ groupId, isAdmin }) => 
       await updateInventoryItem(item.id, { condition });
     } catch {
       setError('Failed to update condition.');
+      await load();
     }
   };
 
@@ -74,6 +76,7 @@ const InventoryPanel: React.FC<InventoryPanelProps> = ({ groupId, isAdmin }) => 
       await updateInventoryItem(item.id, { notes });
     } catch {
       setError('Failed to update notes.');
+      await load();
     }
   };
 
@@ -83,6 +86,7 @@ const InventoryPanel: React.FC<InventoryPanelProps> = ({ groupId, isAdmin }) => 
       await deleteInventoryItem(id);
     } catch {
       setError('Failed to delete item.');
+      await load();
     }
   };
 

@@ -194,7 +194,6 @@ const BrassBandPortalContent: React.FC = () => {
                             <AttendanceMarker
                               groupId={groupId}
                               roster={roster}
-                              userId={user!.id}
                               onMarked={() => setAttendanceVersion((v) => v + 1)}
                             />
                           )}
@@ -221,7 +220,12 @@ const BrassBandPortalContent: React.FC = () => {
                       )}
 
                       {activeTab === 'dues' && (
-                        <DuesPanel groupId={groupId} roster={roster} isAdmin={isAdmin} userId={user!.id} />
+                        <DuesPanel
+                          groupId={groupId}
+                          roster={roster}
+                          isAdmin={isAdmin}
+                          onRosterChange={() => refreshRoster(groupId)}
+                        />
                       )}
 
                       {activeTab === 'inventory' && <InventoryPanel groupId={groupId} isAdmin={isAdmin} />}

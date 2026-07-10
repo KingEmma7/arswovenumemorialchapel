@@ -9,6 +9,7 @@ export interface RosterMember {
   role_title: string | null;
   status: RosterStatus;
   sort_order: number;
+  dues_start_period: string;
 }
 
 export interface EventRow {
@@ -17,10 +18,13 @@ export interface EventRow {
   type: string;
 }
 
-export interface AttendanceRecord {
+export interface AttendanceStatusRecord {
   event_id: string;
   roster_member_id: string;
   status: AttendanceStatus;
+}
+
+export interface AttendanceRecord extends AttendanceStatusRecord {
   note: string | null;
 }
 
@@ -51,7 +55,7 @@ export async function fetchGroupId(slug: string): Promise<string | null> {
 export async function fetchRoster(groupId: string): Promise<RosterMember[]> {
   const { data, error } = await supabase
     .from('roster_members')
-    .select('id, full_name, role_title, status, sort_order')
+    .select('id, full_name, role_title, status, sort_order, dues_start_period')
     .eq('group_id', groupId)
     .order('status', { ascending: true })
     .order('sort_order', { ascending: true });
@@ -104,7 +108,20 @@ export async function getOrCreateEvent(
   return data;
 }
 
-export async function fetchAttendanceForEvents(eventIds: string[]): Promise<AttendanceRecord[]> {
+// Member-safe: never returns excused-absence notes over the wire.
+export async function fetchAttendanceStatuses(eventIds: string[]): Promise<AttendanceStatusRecord[]> {
+  if (eventIds.length === 0) return [];
+  const { data, error } = await supabase
+    .from('attendance')
+    .select('event_id, roster_member_id, status')
+    .in('event_id', eventIds);
+
+  if (error) throw error;
+  return data ?? [];
+}
+
+// Admin-only: includes notes. Callers must gate this behind an admin check.
+export async function fetchAttendanceWithNotes(eventIds: string[]): Promise<AttendanceRecord[]> {
   if (eventIds.length === 0) return [];
   const { data, error } = await supabase
     .from('attendance')
@@ -119,13 +136,13 @@ export async function markAttendance(
   eventId: string,
   rosterMemberId: string,
   status: AttendanceStatus,
-  markedBy: string,
   note?: string | null
 ): Promise<void> {
+  // marked_by is set server-side by a trigger (auth.uid()) - not client-supplied.
   const { error } = await supabase
     .from('attendance')
     .upsert(
-      { event_id: eventId, roster_member_id: rosterMemberId, status, marked_by: markedBy, note: note ?? null },
+      { event_id: eventId, roster_member_id: rosterMemberId, status, note: note ?? null },
       { onConflict: 'event_id,roster_member_id' }
     );
 
@@ -157,5 +174,13 @@ export async function deleteEventIfEmpty(eventId: string): Promise<void> {
 
 export async function updateRosterStatus(rosterMemberId: string, status: RosterStatus): Promise<void> {
   const { error } = await supabase.from('roster_members').update({ status }).eq('id', rosterMemberId);
+  if (error) throw error;
+}
+
+export async function updateDuesStartPeriod(rosterMemberId: string, period: string): Promise<void> {
+  const { error } = await supabase
+    .from('roster_members')
+    .update({ dues_start_period: period })
+    .eq('id', rosterMemberId);
   if (error) throw error;
 }

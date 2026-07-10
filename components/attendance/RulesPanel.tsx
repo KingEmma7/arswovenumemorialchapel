@@ -48,6 +48,7 @@ const RulesPanel: React.FC<RulesPanelProps> = ({ groupId, isAdmin }) => {
       await updateRule(id, { rule: editRule, punishment: editPunishment });
     } catch {
       setError('Failed to update rule.');
+      await load();
     }
   };
 
@@ -57,6 +58,7 @@ const RulesPanel: React.FC<RulesPanelProps> = ({ groupId, isAdmin }) => {
       await deleteRule(id);
     } catch {
       setError('Failed to delete rule.');
+      await load();
     }
   };
 

@@ -25,13 +25,19 @@ const LoginPage: React.FC = () => {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const redirectTo = safeRedirect(router.query.redirect);
+  // Read the redirect target straight from the URL rather than router.query,
+  // which stays empty until router.isReady - relying on it let a fast sign-in
+  // (right after opening an admin login link) drop the redirect and land on "/".
+  const [redirectTo] = useState(() => {
+    if (typeof window === 'undefined') return '/';
+    return safeRedirect(new URLSearchParams(window.location.search).get('redirect'));
+  });
 
   useEffect(() => {
-    if (router.isReady && !loading && user) {
+    if (!loading && user) {
       router.replace(redirectTo);
     }
-  }, [router.isReady, loading, user, redirectTo, router]);
+  }, [loading, user, redirectTo, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
